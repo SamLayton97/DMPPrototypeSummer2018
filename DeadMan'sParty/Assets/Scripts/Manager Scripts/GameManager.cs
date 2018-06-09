@@ -17,13 +17,18 @@ public class GameManager : MonoBehaviour
 
     // character initialization fields
     [SerializeField]
-    GameObject characterPrefab;                         // a prefab of the character game object
-    float charRadius;                                   // radius of character's circle collider
+    GameObject characterPrefab;                             // a prefab of the character game object
+    float charRadius;                                       // radius of character's circle collider
     Dictionary<CharacterList, GameObject> suspects = 
-        new Dictionary<CharacterList, GameObject>();    // Dictionary pairing character objects with character names
-    int numOfCharacters = 16;                           // total character count
-    int murdererID;                                     // id of murderer - randomly generated each game
-    GameObject murderer;                                // saved instance of the murderer game object
+        new Dictionary<CharacterList, GameObject>();        // Dictionary pairing character objects with character names
+    int numOfCharacters = 16;                               // total character count
+
+    // murderer initialization fields
+    int numOfKillers = 2;                                   // total murderer count
+    List<int> murdererIDs = new List<int>();                // list of murderer IDs - randomly generated each game
+    List<GameObject> murderers = new List<GameObject>();    // list of instanced murderer game objects
+    int killerToStrike = 0;                                 // list location of murderer to strike at end of day
+    GameObject murderer;                                    // saved instance of the murderer game object
 
     // room initialization fields
     List<GameObject> rooms = new List<GameObject>();    // a list storing each room in game
@@ -210,9 +215,16 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        // win / lose conditions haven't been met
-        // murderer determines whether to kill one if its roommates
-        murderer.GetComponent<Murderer>().DetermineToKill();
+        // Note: win / lose conditions haven't been met
+        // killer to strike tonight determines to kill roommate
+        murderers[killerToStrike].GetComponent<Murderer>().DetermineToKill();
+
+        // killer to strike passes on to next killer in list
+        killerToStrike++;
+        if (killerToStrike >= murderers.Count)
+        {
+            killerToStrike = 0;
+        }
     }
 
     #endregion
@@ -266,29 +278,40 @@ public class GameManager : MonoBehaviour
             room.GetComponent<Room>().RoomNumber = (rooms.IndexOf(room) + 1);
         }
 
-        // Generate a random murderer ID
-        murdererID = Random.Range(0, numOfCharacters);
+        // Generate random murderer ID(s)
+        murdererIDs = RandomSet.RandomSetOfInts(0, numOfCharacters, numOfKillers, true);
 
 		// create a fresh set of characters with one murderer
         for (int i = 0; i < numOfCharacters; i++)
         {
+            bool flaggedAsKiller = false;   // flag marking whether new character is killer
+
             // instantiate new character and pair it with name in dictionary
             GameObject newChar = Instantiate(characterPrefab);
             suspects.Add((CharacterList)i, newChar);
 
-            // if i matches murderer id, set char's status to be murderer
-            if (i == murdererID)
+            // if i matches one of murderer IDs, set char's status to be murderer
+            foreach (int ID in murdererIDs)
             {
-                newChar.GetComponent<Character>().SetData((CharacterList)i, true);
-                newChar.AddComponent<Murderer>();
-                newChar.tag = "murderer";
+                if (i == ID)
+                {
+                    newChar.GetComponent<Character>().SetData((CharacterList)i, true);
+                    newChar.AddComponent<Murderer>();
+                    newChar.tag = "murderer";
+                    flaggedAsKiller = true;
 
-                // save reference of murderer
-                murderer = newChar;
+                    // TODO: add reference of new murderer to list of murderers
+                    murderers.Add(newChar);
+                    //murderer = newChar;
+                }
             }
-            // otherwise, set char's status to be non-murderer
-            else
+
+            // if character wasn't marked as killer
+            if (!flaggedAsKiller)
+            {
+                // set char's status to be non-murderer
                 newChar.GetComponent<Character>().SetData((CharacterList)i, false);
+            }
         }
 
         int charEnumerator = 0;             // an enumerator to aid in proper character spawning
