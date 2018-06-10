@@ -18,12 +18,14 @@ public class Murderer : MonoBehaviour
         Room currRoom = GetComponent<Character>().CurrentRoom.GetComponent<Room>();
         foreach (GameObject occupant in currRoom.occupants)
         {
-            // add to kill list
-            killList.Add(occupant);
+            // if occupant isn't tagged as a murderer
+            // Note: this excludes self and other killers
+            if (!occupant.CompareTag("murderer"))
+            {
+                // add them to kill list
+                killList.Add(occupant);
+            }
         }
-
-        // remove self from kill list
-        killList.Remove(gameObject);
 
         // if kill list contains multiple characters
         if (killList.Count > 1)

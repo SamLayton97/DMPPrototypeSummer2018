@@ -57,22 +57,11 @@ public class ExecutionRoom : Room
     /// <summary>
     /// Executes occupant
     /// </summary>
-    /// <returns>Returns true if innocent character is killed</returns>
-    public bool ExecuteOccupant()
+    /// <returns>occupant game object</returns>
+    public GameObject ExecuteOccupant()
     {
-        // if character isn't tagged as murderer
-        if (!charToBeExecuted.CompareTag("murderer"))
-        {
-            // execute innocent character and return true
-            Destroy(charToBeExecuted);
-            return true;
-        }
-        // otherwise (i.e., character is murderer)
-        else
-        {
-            // execute murderer and return false
-            Destroy(charToBeExecuted);
-            return false;
-        }
+        Destroy(charToBeExecuted);
+        occupied = false;
+        return charToBeExecuted;
     }
 }

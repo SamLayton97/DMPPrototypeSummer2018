@@ -11,9 +11,9 @@ public class GameManager : MonoBehaviour
     #region Fields
 
     // win / lose condition fields
-    int daysRemaining = 7;              // counter tracking number of days remaining in game
-    bool murdererAtLarge = true;        // flag indicating whether player has caught murderer
-    bool innocentKilled = false;        // flag indicating whether player has executed innocent character
+    int daysRemaining = 7;                  // counter tracking number of days remaining in game
+    bool murdererAtLarge = true;            // flag indicating whether player has caught murderer
+    GameObject characterExecuted;           // character game object executed and returned from execution room
 
     // character initialization fields
     [SerializeField]
@@ -198,21 +198,35 @@ public class GameManager : MonoBehaviour
         if (exeRoomInstance.GetComponent<ExecutionRoom>().IsOccupied)
         {
             // destroy occupant
-            innocentKilled = exeRoomInstance.GetComponent<ExecutionRoom>().ExecuteOccupant();
+            characterExecuted = exeRoomInstance.GetComponent<ExecutionRoom>().ExecuteOccupant();
 
-            // return appropriate feedback
-            // Note: placeholder for first iteration
-            if (innocentKilled)
+            // Remove killer from list of murderers if applicable
+            // and return appropriate feedback to player
+            // Note: debug logs are placeholders for first iteration
+            if (!characterExecuted.CompareTag("murderer"))
             {
                 Debug.Log("Innocent killed. Game Over.");
             }
             else
             {
-                Debug.Log("Murderer killed. Player Wins.");
-                murdererAtLarge = false;
-            }
+                // remove killer from list of murderers
+                murderers.Remove(characterExecuted);
 
-            return;
+                // if player has found all killers, tell them they've won
+                if (murderers.Count < 1)
+                {
+                    Debug.Log("All killer found. You win!");
+                    murdererAtLarge = false;
+
+                    // break from end day process
+                    return;
+                }
+                // otherwise (i.e., killers remain to be found)
+                else
+                {
+                    Debug.Log("Murderer caught. " + murderers.Count + " killers remain.");
+                }
+            }
         }
 
         // Note: win / lose conditions haven't been met
