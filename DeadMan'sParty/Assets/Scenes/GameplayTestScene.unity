@@ -212,8 +212,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3cac02aa6e1def449eed783f0e732c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  daysRemaining: 7
   characterPrefab: {fileID: 1899721702212578, guid: ced22b965e8befb4690d07cfbb2cc7ec,
     type: 2}
+  numOfCharacters: 16
+  numOfKillers: 2
+  numOfRooms: 4
   roomPrefab: {fileID: 1065006022763434, guid: 5a49d9d10f29aa74890596b244591940, type: 2}
   lobbyPrefab: {fileID: 1951610519995776, guid: 18605ca56bce01c4c8c683043eafbf51,
     type: 2}

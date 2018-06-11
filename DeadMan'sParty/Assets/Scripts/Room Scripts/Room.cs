@@ -11,17 +11,15 @@ public class Room : MonoBehaviour
     #region Fields
 
     // capacity support fields
+    [SerializeField]
     const int maxCapacity = 4;                                      // max num of characters to fit in room
     public List<GameObject> occupants = new List<GameObject>();     // list of characters currently occupying room
 
     // character space fields
     [SerializeField]
-    GameObject characterPrefab;             // a prefab of the character game object
-    protected float characterRadius;        // radius of character's circle colliders
-    Vector2 occupant1Loc;                   // location of first character in room
-    Vector2 occupant2Loc;                   // location of second character in room
-    Vector2 occupant3Loc;                   // location of third character in room
-    Vector2 occupant4Loc;                   // location of fourth character in room
+    protected GameObject characterPrefab;                   // a prefab of the character game object
+    protected float characterRadius;                        // radius of character's circle colliders
+    Vector2[] occupantLocs = new Vector2[maxCapacity];      // an array of occupant locations
 
     // room identification fields
     int roomNumber = 0;
@@ -128,23 +126,8 @@ public class Room : MonoBehaviour
             newOccupant.GetComponent<Character>().CurrentRoom = gameObject;
 
             // move character to first free space in room
-            switch (occupants.Count)
-            {
-                case 1:
-                    newOccupant.transform.position = occupant1Loc;
-                    break;
-                case 2:
-                    newOccupant.transform.position = occupant2Loc;
-                    break;
-                case 3:
-                    newOccupant.transform.position = occupant3Loc;
-                    break;
-                case 4:
-                    newOccupant.transform.position = occupant4Loc;
-                    break;
-                default:
-                    break;
-            }
+            Vector2 firstFreeLoc = occupantLocs[occupants.Count - 1];
+            newOccupant.transform.position = firstFreeLoc;
         }
         // otherwise (i.e., full room)
         else
@@ -166,20 +149,7 @@ public class Room : MonoBehaviour
         // re-order remaining occupants to fill any positional gaps
         for (int i = 0; i < occupants.Count; i++)
         {
-            switch (i)
-            {
-                case 0:
-                    occupants[i].transform.position = occupant1Loc;
-                    break;
-                case 1:
-                    occupants[i].transform.position = occupant2Loc;
-                    break;
-                case 2:
-                    occupants[i].transform.position = occupant3Loc;
-                    break;
-                default:
-                    break;
-            }
+            occupants[i].transform.position = occupantLocs[i];
         }
     }
 
@@ -197,15 +167,22 @@ public class Room : MonoBehaviour
         characterRadius = tempChar.GetComponent<CircleCollider2D>().radius;
         Destroy(tempChar);
 
-        // save occupant locations according to their dimensions
-        occupant1Loc = new Vector2(transform.position.x - characterRadius,
-            transform.position.y + characterRadius);
-        occupant2Loc = new Vector2(transform.position.x + characterRadius,
-            transform.position.y + characterRadius);
-        occupant3Loc = new Vector2(transform.position.x - characterRadius,
-            transform.position.y - characterRadius);
-        occupant4Loc = new Vector2(transform.position.x + characterRadius,
-            transform.position.y - characterRadius);
+        // calculate initial coordinates to place occupants
+        BoxCollider2D boxCollider2D = GetComponent<BoxCollider2D>();
+        float initialXLoc = transform.position.x - (characterRadius * ((float)maxCapacity / 4f));
+        float initialYLoc = transform.position.y + characterRadius;
+
+        // store occupant placement locations according to saved dimensions
+        // splits room into two rows
+        for (int i = 0; i < 2; i++)
+        {
+            // fills row
+            for (int j = 0; j < (maxCapacity / 2); j++)
+            {
+                occupantLocs[(2 * i) + j] = new Vector2(initialXLoc + (j * characterRadius * 2),
+                    initialYLoc - (i * characterRadius * 2));
+            }
+        }
     }
 
     // Use this for initialization

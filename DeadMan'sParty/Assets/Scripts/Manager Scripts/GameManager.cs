@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     #region Fields
 
     // win / lose condition fields
+    [SerializeField]
     int daysRemaining = 7;                  // counter tracking number of days remaining in game
     bool murdererAtLarge = true;            // flag indicating whether player has caught murderer
     GameObject characterExecuted;           // character game object executed and returned from execution room
@@ -21,9 +22,11 @@ public class GameManager : MonoBehaviour
     float charRadius;                                       // radius of character's circle collider
     Dictionary<CharacterList, GameObject> suspects = 
         new Dictionary<CharacterList, GameObject>();        // Dictionary pairing character objects with character names
+    [SerializeField]
     int numOfCharacters = 16;                               // total character count
 
     // murderer initialization fields
+    [SerializeField]
     int numOfKillers = 2;                                   // total murderer count
     List<int> murdererIDs = new List<int>();                // list of murderer IDs - randomly generated each game
     List<GameObject> murderers = new List<GameObject>();    // list of instanced murderer game objects
@@ -32,6 +35,7 @@ public class GameManager : MonoBehaviour
 
     // room initialization fields
     List<GameObject> rooms = new List<GameObject>();    // a list storing each room in game
+    [SerializeField]
     int numOfRooms = 4;                                 // total room count
     [SerializeField]
     GameObject roomPrefab;                              // a prefab of the room game object
@@ -314,9 +318,8 @@ public class GameManager : MonoBehaviour
                     newChar.tag = "murderer";
                     flaggedAsKiller = true;
 
-                    // TODO: add reference of new murderer to list of murderers
+                    // add reference of new murderer to list of murderers
                     murderers.Add(newChar);
-                    //murderer = newChar;
                 }
             }
 

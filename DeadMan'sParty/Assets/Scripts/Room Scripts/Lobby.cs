@@ -75,8 +75,10 @@ public class Lobby : Room
     /// </summary>
     protected override void Awake()
     {
-        // create temp character to save its dimensions
-        base.Awake();
+        // create temp character to save its dimentions and then destroy it
+        GameObject tempChar = Instantiate(characterPrefab);
+        characterRadius = tempChar.GetComponent<CircleCollider2D>().radius;
+        Destroy(tempChar);
 
         // calculate initial coordinates to place characters
         boxCollider2D = GetComponent<BoxCollider2D>();
