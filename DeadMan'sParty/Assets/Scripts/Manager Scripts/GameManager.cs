@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// Manages general operations of game
@@ -9,6 +10,10 @@ public class GameManager : MonoBehaviour
 {
 
     #region Fields
+
+    // used for notification popup support
+    Text notifPopUp;
+    Button continueButton;
 
     // win / lose condition fields
     [SerializeField]
@@ -71,6 +76,22 @@ public class GameManager : MonoBehaviour
         get { return daysRemaining; }
     }
 
+    /// <summary>
+    /// Provides access to notificiation text
+    /// </summary>
+    public Text NotifPopUp
+    {
+        get { return notifPopUp; }
+    }
+
+    /// <summary>
+    /// Provides access to button
+    /// </summary>
+    public Button ContinueButton
+    {
+        get { return continueButton; }
+    }
+
     #endregion
 
     #region Public Methods
@@ -109,6 +130,14 @@ public class GameManager : MonoBehaviour
                 rooms[roomNumber - 1].GetComponent<Room>().Populate(charToPush);
             }
             else
+                if (notifPopUp.text == "")
+            {
+                // prints notification of full room
+                notifPopUp.text = "Room " + roomNumber + " is full. Make room by clearing a current occupant"
+                    + " before placing another character within it.";
+                continueButton.gameObject.SetActive(true);
+            }
+
                 // print full room message to console
                 Debug.Log("Room " + roomNumber + " is full. Make room by clearing a current occupant"
                     + " before placing another character within it.");
@@ -149,13 +178,28 @@ public class GameManager : MonoBehaviour
                 exeRoomInstance.GetComponent<ExecutionRoom>().Populate(charToPush);
             }
             else
-                // print full room message to console
-                Debug.Log("Execution room is full. Remove its current occupant before placing " +
+                    if (notifPopUp.text == "")
+            {
+                // prints notification of full room
+                notifPopUp.text = "Execution room is full. Remove its current occupant before placing " +
+                    "another character within it.";
+                continueButton.gameObject.SetActive(true);
+            }
+
+            // print full room message to console
+            Debug.Log("Execution room is full. Remove its current occupant before placing " +
                     "another character within it.");
         }
         // otherwise (i.e., invalid room number)
         else
         {
+            if (notifPopUp.text == "")
+            {
+                // prints notification of full room
+                notifPopUp.text = "Error: Invalid room ID. Moving to lobby.";
+                continueButton.gameObject.SetActive(true);
+            }
+
             // print error to console
             Debug.Log("Error: Invalid room ID. Moving to lobby.");
             PushToRoom(charToPush, 0);
@@ -170,6 +214,12 @@ public class GameManager : MonoBehaviour
         // if lobby is not empty
         if (!lobbyInstance.GetComponent<Lobby>().IsEmpty)
         {
+            if (notifPopUp.text == "")
+            {
+                // prints notification of full room
+                notifPopUp.text = "Cannot end day with characters in lobby.";
+                continueButton.gameObject.SetActive(true);
+            }
             // break from end-day process
             // Note: placeholder for first iteration
             Debug.Log("Cannot end day with characters in lobby.");
@@ -182,6 +232,13 @@ public class GameManager : MonoBehaviour
             // if room contains only 1 character
             if (room.GetComponent<Room>().Count == 1)
             {
+                if (notifPopUp.text == "")
+                {
+                    // prints notification of full room
+                    notifPopUp.text = "Cannot end day with only 1 character in a room. " +
+                    "Place either multiple characters in that rooms or empty it.";
+                    continueButton.gameObject.SetActive(true);
+                }
                 // break from end day process
                 // Note: placeholder for first iteration
                 Debug.Log("Cannot end day with only 1 character in a room. " +
@@ -194,6 +251,12 @@ public class GameManager : MonoBehaviour
         --daysRemaining;
         if (daysRemaining < 0 && murdererAtLarge)
         {
+            if (notifPopUp.text == "")
+            {
+                // prints notification of full room
+                notifPopUp.text = "Murderer escaped. Game Over.";
+                continueButton.gameObject.SetActive(true);
+            }
             // Note: placeholder for first iteration
             Debug.Log("Murderer escaped. Game Over.");
         }
@@ -209,6 +272,12 @@ public class GameManager : MonoBehaviour
             // Note: debug logs are placeholders for first iteration
             if (!characterExecuted.CompareTag("murderer"))
             {
+                if (notifPopUp.text == "")
+                {
+                    // prints notification of full room
+                    notifPopUp.text = "Innocent killed. Game Over.";
+                    continueButton.gameObject.SetActive(true);
+                }
                 Debug.Log("Innocent killed. Game Over.");
             }
             else
@@ -219,7 +288,13 @@ public class GameManager : MonoBehaviour
                 // if player has found all killers, tell them they've won
                 if (murderers.Count < 1)
                 {
-                    Debug.Log("All killer found. You win!");
+                    if (notifPopUp.text == "")
+                    {
+                        // prints notification of full room
+                        notifPopUp.text = "All killers found. You win!";
+                        continueButton.gameObject.SetActive(true);
+                    }
+                    Debug.Log("All killers found. You win!");
                     murdererAtLarge = false;
 
                     // break from end day process
@@ -228,6 +303,12 @@ public class GameManager : MonoBehaviour
                 // otherwise (i.e., killers remain to be found)
                 else
                 {
+                    if (notifPopUp.text == "")
+                    {
+                        // prints notification of full room
+                        notifPopUp.text = "Murderer caught. " + murderers.Count + " killers remain.";
+                        continueButton.gameObject.SetActive(true);
+                    }
                     Debug.Log("Murderer caught. " + murderers.Count + " killers remain.");
                 }
             }
@@ -271,6 +352,14 @@ public class GameManager : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
+        // gets text block component
+        notifPopUp = GameObject.FindGameObjectWithTag("NotifPopUp").GetComponent<Text>();
+        notifPopUp.text = "";
+
+        // gets button component
+        continueButton = GameObject.FindGameObjectWithTag("ContinueButton").GetComponent<Button>();
+        continueButton.gameObject.SetActive(false);
+
         // create an instance of an empty lobby
         lobbyLocation = new Vector2(0, ScreenUtils.ScreenBottom + lobbyOffset);
         lobbyInstance = Instantiate(lobbyPrefab, lobbyLocation, Quaternion.identity);
