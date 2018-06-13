@@ -130,17 +130,19 @@ public class GameManager : MonoBehaviour
                 rooms[roomNumber - 1].GetComponent<Room>().Populate(charToPush);
             }
             else
-                if (notifPopUp.text == "")
             {
-                // prints notification of full room
-                notifPopUp.text = "Room " + roomNumber + " is full. Make room by clearing a current occupant"
+                if (notifPopUp.text == "")
+                {
+                    // prints notification of full room
+                    notifPopUp.text = "Room " + roomNumber + " is full. Make room by clearing a current occupant"
                     + " before placing another character within it.";
-                continueButton.gameObject.SetActive(true);
-            }
+                    continueButton.gameObject.SetActive(true);
+                }
 
                 // print full room message to console
                 Debug.Log("Room " + roomNumber + " is full. Make room by clearing a current occupant"
                     + " before placing another character within it.");
+            }
         }
         // if room number is 0 (i.e. lobby ID)
         else if (roomNumber == 0)
@@ -178,28 +180,23 @@ public class GameManager : MonoBehaviour
                 exeRoomInstance.GetComponent<ExecutionRoom>().Populate(charToPush);
             }
             else
-                    if (notifPopUp.text == "")
             {
-                // prints notification of full room
-                notifPopUp.text = "Execution room is full. Remove its current occupant before placing " +
+                if (notifPopUp.text == "")
+                {
+                    // prints notification of occupied execution room
+                    notifPopUp.text = "Execution room is full. Remove its current occupant before placing " +
                     "another character within it.";
-                continueButton.gameObject.SetActive(true);
-            }
+                    continueButton.gameObject.SetActive(true);
+                }
 
-            // print full room message to console
-            Debug.Log("Execution room is full. Remove its current occupant before placing " +
-                    "another character within it.");
+                // print full room message to console
+                Debug.Log("Execution room is full. Remove its current occupant before placing " +
+                        "another character within it.");
+            }
         }
         // otherwise (i.e., invalid room number)
         else
         {
-            if (notifPopUp.text == "")
-            {
-                // prints notification of full room
-                notifPopUp.text = "Error: Invalid room ID. Moving to lobby.";
-                continueButton.gameObject.SetActive(true);
-            }
-
             // print error to console
             Debug.Log("Error: Invalid room ID. Moving to lobby.");
             PushToRoom(charToPush, 0);
@@ -216,7 +213,7 @@ public class GameManager : MonoBehaviour
         {
             if (notifPopUp.text == "")
             {
-                // prints notification of full room
+                // prints occupied lobby notification
                 notifPopUp.text = "Cannot end day with characters in lobby.";
                 continueButton.gameObject.SetActive(true);
             }
@@ -234,7 +231,7 @@ public class GameManager : MonoBehaviour
             {
                 if (notifPopUp.text == "")
                 {
-                    // prints notification of full room
+                    // prints single character end-day prevention message
                     notifPopUp.text = "Cannot end day with only 1 character in a room. " +
                     "Place either multiple characters in that rooms or empty it.";
                     continueButton.gameObject.SetActive(true);
@@ -253,7 +250,7 @@ public class GameManager : MonoBehaviour
         {
             if (notifPopUp.text == "")
             {
-                // prints notification of full room
+                // prints murderer escaped fail state message
                 notifPopUp.text = "Murderer escaped. Game Over.";
                 continueButton.gameObject.SetActive(true);
             }
@@ -274,7 +271,7 @@ public class GameManager : MonoBehaviour
             {
                 if (notifPopUp.text == "")
                 {
-                    // prints notification of full room
+                    // prints innocent killed fail state message
                     notifPopUp.text = "Innocent killed. Game Over.";
                     continueButton.gameObject.SetActive(true);
                 }
@@ -290,7 +287,7 @@ public class GameManager : MonoBehaviour
                 {
                     if (notifPopUp.text == "")
                     {
-                        // prints notification of full room
+                        // prints killers found victory condition message
                         notifPopUp.text = "All killers found. You win!";
                         continueButton.gameObject.SetActive(true);
                     }
@@ -305,9 +302,17 @@ public class GameManager : MonoBehaviour
                 {
                     if (notifPopUp.text == "")
                     {
-                        // prints notification of full room
-                        notifPopUp.text = "Murderer caught. " + murderers.Count + " killers remain.";
-                        continueButton.gameObject.SetActive(true);
+                        // displays number of murderers left
+                        if (murderers.Count > 1)
+                        {
+                            notifPopUp.text = "Murderer caught. " + murderers.Count + " killers remain.";
+                            continueButton.gameObject.SetActive(true);
+                        }
+                        else if (murderers.Count == 1)
+                        {
+                            notifPopUp.text = "Murderer caught. " + murderers.Count + " killer remains.";
+                            continueButton.gameObject.SetActive(true);
+                        }
                     }
                     Debug.Log("Murderer caught. " + murderers.Count + " killers remain.");
                 }

@@ -81,10 +81,10 @@ public class Character : MonoBehaviour
 
         // changes character's sprite accordingly
         // Note: Used only for debugging purposes
-        if (isMurderer)
-            spriteRenderer.sprite = murdererSprite;
-        else
-            spriteRenderer.sprite = characterSprite;
+        //if (isMurderer)
+        //    spriteRenderer.sprite = murdererSprite;
+        //else
+        //    spriteRenderer.sprite = characterSprite;
     }
 
     #endregion
