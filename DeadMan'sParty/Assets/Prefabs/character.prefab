@@ -82,6 +82,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37c922af43cfe6245b0cc2c6cfeba20d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefabCharacterMenu: {fileID: 1585316145212754, guid: e2b799dbff36148448c94944a6ecbb4d,
+    type: 2}
 --- !u!212 &212717110955774358
 SpriteRenderer:
   m_ObjectHideFlags: 1

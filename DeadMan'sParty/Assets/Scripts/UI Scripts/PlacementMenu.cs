@@ -53,6 +53,8 @@ public class PlacementMenu : MonoBehaviour
         // retreive necessary objects from scene
         charNameText = GameObject.FindGameObjectWithTag("menuCharacterName").GetComponent<Text>();
         gameManager = Camera.main.GetComponent<GameManager>();
+
+        Character = GameObject.FindGameObjectWithTag("CharacterMenu").GetComponent<CharacterMenu>().Character;
     }
 
     #region Button Event Methods
@@ -62,11 +64,13 @@ public class PlacementMenu : MonoBehaviour
     /// </summary>
     public void OnClickCloseButton()
     {
-        // set character reference to null
-        if (character != null)
-            Character = null;
-        else
-            Debug.Log("No character selected.");
+        //// set character reference to null
+        //if (character != null)
+        //    Character = null;
+        //else
+        //    Debug.Log("No character selected.");
+
+        Destroy(gameObject);
     }
 
     /// <summary>

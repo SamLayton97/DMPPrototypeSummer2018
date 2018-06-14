@@ -8,6 +8,10 @@ using UnityEngine.UI;
 /// </summary>
 public class CharacterUI : MonoBehaviour
 {
+    // character menu assets
+    [SerializeField]
+    GameObject prefabCharacterMenu;
+
     // name display support fields
     CharacterList characterName;
     Text nameText;
@@ -46,9 +50,31 @@ public class CharacterUI : MonoBehaviour
     /// </summary>
     void OnMouseDown()
     {
-        // find character placement menu in scene
-        // and set menu to refer to this character game object
-        GameObject placementMenu = GameObject.FindGameObjectWithTag("PlacementMenu");
-        placementMenu.GetComponent<PlacementMenu>().Character = gameObject;
+        //// find character placement menu in scene
+        //// and set menu to refer to this character game object
+        //GameObject placementMenu = GameObject.FindGameObjectWithTag("PlacementMenu");
+        //placementMenu.GetComponent<PlacementMenu>().Character = gameObject;
+        GameObject characterMenu;
+
+        // create the character menu
+        if (GameObject.FindGameObjectsWithTag("CharacterMenu").Length == 0)
+        {
+            characterMenu = Instantiate(prefabCharacterMenu, new Vector3(-350, 0, 0), Quaternion.identity);
+
+            // find the character menu in scene
+            // and set the menu to refer to this character
+            characterMenu.GetComponent<CharacterMenu>().Character = gameObject;
+        }
+        else
+        {
+            characterMenu = GameObject.FindGameObjectWithTag("CharacterMenu");
+            Destroy(characterMenu);
+            Instantiate(prefabCharacterMenu, new Vector3(-350, 0, 0), Quaternion.identity);
+
+            // find the character menu in scene
+            // and set the menu to refer to this character
+            characterMenu = GameObject.FindGameObjectWithTag("CharacterMenu");
+            characterMenu.GetComponent<CharacterMenu>().Character = gameObject;
+        }
     }
 }

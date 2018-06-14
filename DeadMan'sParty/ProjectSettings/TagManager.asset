@@ -15,6 +15,7 @@ TagManager:
   - DaysRemainingText
   - NotifPopUp
   - ContinueButton
+  - CharacterMenu
   layers:
   - Default
   - TransparentFX
