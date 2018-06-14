@@ -43,26 +43,18 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     int numOfRooms = 4;                                 // total room count
     [SerializeField]
+    int maxNumOfRooms = 6;                              // max number of rooms in game
+    [SerializeField]
+    int minNumOfRooms = 2;                              // min number of rooms in game
+    [SerializeField]
     GameObject roomPrefab;                              // a prefab of the room game object
     float roomWidth;                                    // width of the room
     float roomHeight;                                   // height of the room
-    Vector2 room1Loc;                                   // location of room 1
-    Vector2 room2Loc;                                   // location of room 2
-    Vector2 room3Loc;                                   // location of room 3
-    Vector4 room4Loc;                                   // location of room 4
+    Vector2[] roomLocations;                            // an array of room locations
 
-    // lobby initialization fields
-    [SerializeField]
-    GameObject lobbyPrefab;             // a prefab of the lobby game object
+    // lobby and gallows support fields
     GameObject lobbyInstance;           // the saved instance of a lobby prefab
-    Vector2 lobbyLocation;              // location to spawn the lobby at
-    float lobbyOffset = 1;              // y-offset to keep lobby on-screen
-
-    // execution room initialization fields
-    [SerializeField]
-    GameObject executionPrefab;             // a prefab of the execution room game object
-    GameObject exeRoomInstance;             // the saved instance of an execution room prefab
-    Vector2 exeRoomLoc;                     // location to spawn the execution room at
+    GameObject exeRoomInstance;         // the saved instance of an execution room prefab
 
     #endregion
 
@@ -320,15 +312,16 @@ public class GameManager : MonoBehaviour
         }
 
         // Note: win / lose conditions haven't been met
-        // killer to strike tonight determines to kill roommate
-        murderers[killerToStrike].GetComponent<Murderer>().DetermineToKill();
 
-        // killer to strike passes on to next killer in list
+        // pass killer-to-strike on to next killer in list
         killerToStrike++;
         if (killerToStrike >= murderers.Count)
         {
             killerToStrike = 0;
         }
+
+        // killer to strike tonight determines to kill a roommate
+        murderers[killerToStrike].GetComponent<Murderer>().DetermineToKill();
     }
 
     #endregion
@@ -347,11 +340,42 @@ public class GameManager : MonoBehaviour
         roomHeight = tempCollider.size.y;
         Destroy(tempRoom);
 
-        // save room locations according to saved dimensions
-        room1Loc = new Vector2(-roomWidth, roomHeight);
-        room2Loc = new Vector2(roomWidth, roomHeight);
-        room3Loc = new Vector2(-roomWidth, -roomHeight);
-        room4Loc = new Vector2(roomWidth, -roomHeight);
+        // save room locations into array of preset length
+        // confine number of rooms to given bounds
+        if (numOfRooms > maxNumOfRooms)
+            numOfRooms = maxNumOfRooms;
+        else if (numOfRooms < minNumOfRooms)
+            numOfRooms = minNumOfRooms;
+        roomLocations = new Vector2[numOfRooms + (numOfRooms % 2)];
+
+        // determine number of rows of rooms
+        int numOfRows = 0;
+        if (numOfRooms > 2)
+            numOfRows = 2;
+        else
+            numOfRows = 1;
+
+        // calculate initial coordinates to place rooms
+        float initialXLoc = 0 - roomWidth;
+        float initialYLoc = roomHeight * (numOfRows - 1);
+
+        // calculate number of rooms per row and modify initial x coordinate if appropriate
+        int roomsPerRow = (numOfRooms / numOfRows) + (numOfRooms % numOfRows);
+        if (roomsPerRow == 3)
+            initialXLoc -= .9f;
+
+        // store room placement locations according to saved dimensions
+        // splits game scene into appropriate number of rows
+        for (int i = 0; i < numOfRows; i++)
+        {
+            // fills spots of current row
+            for (int j = 0; j < roomsPerRow; j++)
+            {
+                roomLocations[((numOfRooms / 2 + numOfRooms % 2) * i) + j] = 
+                    new Vector2(initialXLoc + (j * roomWidth * (2 - .5f * (roomsPerRow - 2))),
+                    initialYLoc - (i * roomHeight * 2));
+            }
+        }
     }
 
     // Use this for initialization
@@ -365,23 +389,16 @@ public class GameManager : MonoBehaviour
         continueButton = GameObject.FindGameObjectWithTag("ContinueButton").GetComponent<Button>();
         continueButton.gameObject.SetActive(false);
 
-        // create an instance of an empty lobby
-        lobbyLocation = new Vector2(0, ScreenUtils.ScreenBottom + lobbyOffset);
-        lobbyInstance = Instantiate(lobbyPrefab, lobbyLocation, Quaternion.identity);
-
-        // create an instance of an empty execution room
-        exeRoomLoc = new Vector2(ScreenUtils.ScreenRight / 2, 0);
-        exeRoomInstance = Instantiate(executionPrefab, exeRoomLoc, Quaternion.identity);
+        // find and save lobby and execution room from scene
+        lobbyInstance = GameObject.FindGameObjectWithTag("lobby");
+        exeRoomInstance = GameObject.FindGameObjectWithTag("executionRoom");
 
         // instantiate a set of rooms and add them to a room list
-        GameObject room1 = Instantiate(roomPrefab, room1Loc, Quaternion.identity);
-        rooms.Add(room1);
-        GameObject room2 = Instantiate(roomPrefab, room2Loc, Quaternion.identity);
-        rooms.Add(room2);
-        GameObject room3 = Instantiate(roomPrefab, room3Loc, Quaternion.identity);
-        rooms.Add(room3);
-        GameObject room4 = Instantiate(roomPrefab, room4Loc, Quaternion.identity);
-        rooms.Add(room4);
+        for (int i = 0; i < numOfRooms; i++)
+        {
+            GameObject room = Instantiate(roomPrefab, roomLocations[i], Quaternion.identity);
+            rooms.Add(room);
+        }
 
         // iterate through list of rooms
         foreach (GameObject room in rooms)
