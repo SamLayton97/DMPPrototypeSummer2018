@@ -215,11 +215,11 @@ MonoBehaviour:
   daysRemaining: 7
   characterPrefab: {fileID: 1899721702212578, guid: ced22b965e8befb4690d07cfbb2cc7ec,
     type: 2}
-  numOfCharacters: 16
-  numOfKillers: 2
-  numOfRooms: 4
+  numOfCharacters: 4
+  numOfKillers: 1
+  numOfRooms: 1
   maxNumOfRooms: 6
-  minNumOfRooms: 2
+  minNumOfRooms: 1
   roomPrefab: {fileID: 1065006022763434, guid: 5a49d9d10f29aa74890596b244591940, type: 2}
 --- !u!20 &519420031
 Camera:

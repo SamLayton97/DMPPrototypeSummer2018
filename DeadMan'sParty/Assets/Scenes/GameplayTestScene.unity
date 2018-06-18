@@ -217,7 +217,7 @@ MonoBehaviour:
     type: 2}
   numOfCharacters: 16
   numOfKillers: 2
-  numOfRooms: 1
+  numOfRooms: 4
   maxNumOfRooms: 6
   minNumOfRooms: 1
   roomPrefab: {fileID: 1065006022763434, guid: 5a49d9d10f29aa74890596b244591940, type: 2}
