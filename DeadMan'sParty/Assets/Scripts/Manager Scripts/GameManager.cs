@@ -46,6 +46,10 @@ public class GameManager : MonoBehaviour
     int maxNumOfRooms = 6;                              // max number of rooms in game
     [SerializeField]
     int minNumOfRooms = 2;                              // min number of rooms in game
+                                                        // NOTE: in any standard level, this should never be less than 2
+                                                        // as anything less removes the central game mechanic. Setting this to 1
+                                                        // should only be used for testing purposes.
+    // room initialization fields cont.
     [SerializeField]
     GameObject roomPrefab;                              // a prefab of the room game object
     float roomWidth;                                    // width of the room

@@ -12,14 +12,14 @@ public class Room : MonoBehaviour
 
     // capacity support fields
     [SerializeField]
-    const int maxCapacity = 4;                                      // max num of characters to fit in room
+    int maxCapacity = 4;                                            // max num of characters to fit in room
     public List<GameObject> occupants = new List<GameObject>();     // list of characters currently occupying room
 
     // character space fields
     [SerializeField]
     protected GameObject characterPrefab;                   // a prefab of the character game object
     protected float characterRadius;                        // radius of character's circle colliders
-    Vector2[] occupantLocs = new Vector2[maxCapacity];      // an array of occupant locations
+    Vector2[] occupantLocs;                                 // an array of occupant locations
 
     // room identification fields
     int roomNumber = 0;
@@ -162,6 +162,8 @@ public class Room : MonoBehaviour
     /// </summary>
     protected virtual void Awake()
     {
+        occupantLocs = new Vector2[maxCapacity];
+
         // create temp character to save its dimentions and then destroy it
         GameObject tempChar = Instantiate(characterPrefab);
         characterRadius = tempChar.GetComponent<CircleCollider2D>().radius;
@@ -172,14 +174,17 @@ public class Room : MonoBehaviour
         float initialXLoc = transform.position.x - (characterRadius * ((float)maxCapacity / 4f));
         float initialYLoc = transform.position.y + characterRadius;
 
+        // calculate number of characters per row
+        int charsPerRow = (maxCapacity / 2) + (maxCapacity % 2);
+
         // store occupant placement locations according to saved dimensions
         // splits room into two rows
         for (int i = 0; i < 2; i++)
         {
             // fills row
-            for (int j = 0; j < (maxCapacity / 2); j++)
+            for (int j = 0; j < charsPerRow; j++)
             {
-                occupantLocs[(2 * i) + j] = new Vector2(initialXLoc + (j * characterRadius * 2),
+                occupantLocs[(charsPerRow * i) + j] = new Vector2(initialXLoc + (j * characterRadius * 2),
                     initialYLoc - (i * characterRadius * 2));
             }
         }
