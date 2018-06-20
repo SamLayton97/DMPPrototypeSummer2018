@@ -22,6 +22,7 @@ public class Room : MonoBehaviour
     Vector2[] occupantLocs;                                 // an array of occupant locations
 
     // room identification fields
+    RoomNames roomName;
     int roomNumber = 0;
     SpriteRenderer spriteRenderer;
     [SerializeField]
@@ -104,6 +105,14 @@ public class Room : MonoBehaviour
                 }
             }
         }
+    }
+
+    /// <summary>
+    /// Provides get access to room's (i.e., building's) name / type
+    /// </summary>
+    public RoomNames RoomName
+    {
+        get { return roomName; }
     }
 
     #endregion
