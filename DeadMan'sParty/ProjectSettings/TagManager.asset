@@ -16,6 +16,7 @@ TagManager:
   - NotifPopUp
   - ContinueButton
   - CharacterMenu
+  - ActionButton
   layers:
   - Default
   - TransparentFX

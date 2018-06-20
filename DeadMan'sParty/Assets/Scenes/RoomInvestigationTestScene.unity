@@ -420,7 +420,7 @@ GameObject:
   m_PrefabParentObject: {fileID: 1782949569032760, guid: 3a311c86211199c41b20bb01a74e2505,
     type: 2}
   m_PrefabInternal: {fileID: 1739715527}
---- !u!114 &986157846
+--- !u!114 &986157851
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -428,7 +428,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 986157845}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8292ba79f9e34b142a601d5ceb5768aa, type: 3}
+  m_Script: {fileID: 11500000, guid: 917ee3095aa25ba43b3ea67f62592377, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1390122371
@@ -512,16 +512,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114506778846251436, guid: 3a311c86211199c41b20bb01a74e2505,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224850627871515972, guid: 3a311c86211199c41b20bb01a74e2505,
-        type: 2}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 224850627871515972, guid: 3a311c86211199c41b20bb01a74e2505,
         type: 2}
       propertyPath: m_LocalPosition.x
@@ -612,44 +602,39 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 224705899451061048, guid: 3a311c86211199c41b20bb01a74e2505,
-        type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: 500
-      objectReference: {fileID: 0}
-    - target: {fileID: 224705899451061048, guid: 3a311c86211199c41b20bb01a74e2505,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 1683258632536494, guid: 3a311c86211199c41b20bb01a74e2505, type: 2}
+    - target: {fileID: 1894115262922030, guid: 3a311c86211199c41b20bb01a74e2505, type: 2}
       propertyPath: m_TagString
-      value: DaysRemainingText
+      value: ActionButton
       objectReference: {fileID: 0}
-    - target: {fileID: 114506778846251436, guid: 3a311c86211199c41b20bb01a74e2505,
+    - target: {fileID: 114468411849071176, guid: 3a311c86211199c41b20bb01a74e2505,
         type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114506778846251436, guid: 3a311c86211199c41b20bb01a74e2505,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114506778846251436, guid: 3a311c86211199c41b20bb01a74e2505,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      propertyPath: m_Text
       value: 
-      objectReference: {fileID: 986157846}
-    - target: {fileID: 114506778846251436, guid: 3a311c86211199c41b20bb01a74e2505,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnClickEndDayButton
       objectReference: {fileID: 0}
-    - target: {fileID: 114506778846251436, guid: 3a311c86211199c41b20bb01a74e2505,
+    - target: {fileID: 224850627871515972, guid: 3a311c86211199c41b20bb01a74e2505,
         type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224850627871515972, guid: 3a311c86211199c41b20bb01a74e2505,
+        type: 2}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224850627871515972, guid: 3a311c86211199c41b20bb01a74e2505,
+        type: 2}
+      propertyPath: m_LocalScale.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114468411849071176, guid: 3a311c86211199c41b20bb01a74e2505,
+        type: 2}
+      propertyPath: m_FontData.m_FontSize
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 114468411849071176, guid: 3a311c86211199c41b20bb01a74e2505,
+        type: 2}
+      propertyPath: m_FontData.m_MinSize
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3a311c86211199c41b20bb01a74e2505, type: 2}
@@ -819,6 +804,21 @@ Prefab:
     - target: {fileID: 223976166627379330, guid: 868b597f4b0fa8c479bb213601d90e32,
         type: 2}
       propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224476671026078714, guid: 868b597f4b0fa8c479bb213601d90e32,
+        type: 2}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224476671026078714, guid: 868b597f4b0fa8c479bb213601d90e32,
+        type: 2}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224476671026078714, guid: 868b597f4b0fa8c479bb213601d90e32,
+        type: 2}
+      propertyPath: m_LocalScale.z
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

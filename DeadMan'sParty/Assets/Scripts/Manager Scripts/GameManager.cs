@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
         new Dictionary<CharacterList, GameObject>();        // Dictionary pairing character objects with character names
     [SerializeField]
     int numOfCharacters = 16;                               // total character count
+    float currentActionPoints;                              // current amount of action point total
 
     // murderer initialization fields
     [SerializeField]
@@ -88,6 +89,14 @@ public class GameManager : MonoBehaviour
         get { return continueButton; }
     }
 
+    /// <summary>
+    /// Provides access to the current amount of action points
+    /// </summary>
+    public float CurrentActionPoints
+    {
+        get { return currentActionPoints; }
+    }
+
     #endregion
 
     #region Public Methods
@@ -110,14 +119,18 @@ public class GameManager : MonoBehaviour
         if (roomNumber > 0 && roomNumber <= rooms.Count)
         {
             // if specified standard room isn't full 
-            if (!rooms[roomNumber - 1].GetComponent<Room>().IsFull)
+            if (!rooms[roomNumber - 1].GetComponent<Room>().IsFull && currentActionPoints > 0)
             {
                 // retrieve type-specific room component of current room
                 // and remove character from it
-                if (currRoom.CompareTag("room"))
+                if (currRoom.CompareTag("room") && currentActionPoints > 0)
                     currRoom.GetComponent<Room>().Remove(charToPush);
                 else if (currRoom.CompareTag("lobby"))
+                {
                     currRoom.GetComponent<Lobby>().Remove(charToPush);
+                    --currentActionPoints;
+                    Debug.Log(currentActionPoints);
+                }
                 else if (currRoom.CompareTag("executionRoom"))
                     currRoom.GetComponent<ExecutionRoom>().Clear();
 
@@ -127,12 +140,24 @@ public class GameManager : MonoBehaviour
             }
             else
             {
+                // Checks for blank text box
                 if (notifPopUp.text == "")
                 {
-                    // prints notification of full room
-                    notifPopUp.text = "Room " + roomNumber + " is full. Make room by clearing a current occupant"
-                    + " before placing another character within it.";
-                    continueButton.gameObject.SetActive(true);
+                    // Checks for available action points
+                    if (currentActionPoints <= 0)
+                    {
+                        // Changes to appropriate text
+                        notifPopUp.text =
+                            "No more actions may be taken, you must End your Investigation for the Day";
+                        continueButton.gameObject.SetActive(true);
+                    }
+                    else
+                    {
+                        // prints notification of full room
+                        notifPopUp.text = "Room " + roomNumber + " is full. Make room by clearing a current occupant"
+                        + " before placing another character within it.";
+                        continueButton.gameObject.SetActive(true);
+                    }
                 }
 
                 // print full room message to console
@@ -385,6 +410,7 @@ public class GameManager : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
+        currentActionPoints = 7;
         // gets text block component
         notifPopUp = GameObject.FindGameObjectWithTag("NotifPopUp").GetComponent<Text>();
         notifPopUp.text = "";
