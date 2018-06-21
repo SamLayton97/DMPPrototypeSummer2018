@@ -342,6 +342,14 @@ public class GameManager : MonoBehaviour
 
         // Note: win / lose conditions haven't been met
 
+        // arm any unarmed killers in game
+        // Note: Placeholder for week 3 version. In later version, killers will take weapons from
+        // list of weapons in their current room.
+        foreach(GameObject killer in murderers)
+        {
+            killer.GetComponent<Murderer>().IsArmed = true;
+        }
+
         // pass killer-to-strike on to next killer in list
         killerToStrike++;
         if (killerToStrike >= murderers.Count)

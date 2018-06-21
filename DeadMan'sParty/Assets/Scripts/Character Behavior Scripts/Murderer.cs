@@ -9,41 +9,67 @@ public class Murderer : MonoBehaviour
 {
     List<GameObject> killList = new List<GameObject>();
 
+    // murder weapon support fields
+    Weapon weapon;                      // current weapon equipped
+    bool isArmed = false;               // flag indicating whether killer has weapon
+                                        // Note: this flag is a placeholder for the week 3 version
+
+    /// <summary>
+    /// Provides get access to whether killer has weapon on them
+    /// Placeholder Note: Property also provides set access until proper
+    /// weapon support in rooms is in place
+    /// </summary>
+    public bool IsArmed
+    {
+        get { return isArmed; }
+        set { isArmed = value; }
+    }
+
     /// <summary>
     /// Murderer determines whether to kill a neighbor
     /// </summary>
     public void DetermineToKill()
     {
-        // generate kill list from occupants of current room
-        Room currRoom = GetComponent<Character>().CurrentRoom.GetComponent<Room>();
-        foreach (GameObject occupant in currRoom.occupants)
+        // if murderer is armed
+        if (isArmed)
         {
-            // if occupant isn't tagged as a murderer
-            // Note: this excludes self and other killers
-            if (!occupant.CompareTag("murderer"))
+            // generate kill list from occupants of current room
+            Room currRoom = GetComponent<Character>().CurrentRoom.GetComponent<Room>();
+            foreach (GameObject occupant in currRoom.occupants)
             {
-                // add them to kill list
-                killList.Add(occupant);
+                // if occupant isn't tagged as a murderer
+                // Note: this excludes self and other killers
+                if (!occupant.CompareTag("murderer"))
+                {
+                    // add them to kill list
+                    killList.Add(occupant);
+                }
             }
-        }
 
-        // if kill list contains multiple characters
-        if (killList.Count > 1)
-        {
-            // kill random character from list
-            int victimID = Random.Range(0, killList.Count - 1);
-            Kill(killList[victimID]);
+            // if kill list contains multiple characters
+            if (killList.Count > 1)
+            {
+                // kill random character from list
+                int victimID = Random.Range(0, killList.Count - 1);
+                Kill(killList[victimID]);
+            }
+            // otherwise (i.e., single character in list)
+            else
+            {
+                // determine to hold off for the night
+                // Note: placeholder for first iteration
+                Debug.Log("Murderer holds off for the night...");
+            }
+
+            // clear kill list for next night
+            killList.Clear();
         }
-        // otherwise (i.e., single character in list)
+        // otherwise (i.e., killer determines to kill w/ no weapon)
         else
         {
-            // determine to hold off for the night
-            // Note: placeholder for first iteration
-            Debug.Log("Murderer holds off for the night...");
+            // Print error to Debug console
+            Debug.Log("Error: Killer determining to kill without a weapon.");
         }
-
-        // clear kill list for next night
-        killList.Clear();
     }
 
     /// <summary>
@@ -65,5 +91,9 @@ public class Murderer : MonoBehaviour
 
         // destroy victim
         Destroy(victim);
+
+        // disarm killer
+        // Note: This is a placeholder until full weapon implementation in rooms is complete
+        isArmed = false;
     }
 }
