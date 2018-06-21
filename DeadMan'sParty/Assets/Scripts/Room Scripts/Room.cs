@@ -12,7 +12,8 @@ public class Room : MonoBehaviour
 
     // capacity support fields
     [SerializeField]
-    int maxCapacity = 4;                                            // max num of characters to fit in room
+    int maxCapacity = GameManager.occupancyOfRooms;
+    //int maxCapacity = 4;                                            // max num of characters to fit in room
     public List<GameObject> occupants = new List<GameObject>();     // list of characters currently occupying room
 
     // character space fields

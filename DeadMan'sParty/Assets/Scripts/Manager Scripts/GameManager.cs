@@ -46,6 +46,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     int maxNumOfRooms = 6;                              // max number of rooms in game
     [SerializeField]
+    public static int occupancyOfRooms = 6;             // Occupancy of room
+    [SerializeField]
     int minNumOfRooms = 2;                              // min number of rooms in game
                                                         // NOTE: in any standard level, this should never be less than 2
                                                         // as anything less removes the central game mechanic. Setting this to 1
