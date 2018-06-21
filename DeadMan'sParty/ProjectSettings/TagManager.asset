@@ -17,6 +17,7 @@ TagManager:
   - ContinueButton
   - CharacterMenu
   - ActionButton
+  - Weapon
   layers:
   - Default
   - TransparentFX

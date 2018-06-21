@@ -10,7 +10,7 @@ public class Murderer : MonoBehaviour
     List<GameObject> killList = new List<GameObject>();
 
     // murder weapon support fields
-    Weapon weapon;                      // current weapon equipped
+    GameObject weapon;                      // current weapon equipped. changed to gameobject for testing
     bool isArmed = false;               // flag indicating whether killer has weapon
                                         // Note: this flag is a placeholder for the week 3 version
 
@@ -23,6 +23,23 @@ public class Murderer : MonoBehaviour
     {
         get { return isArmed; }
         set { isArmed = value; }
+    }
+
+    void Start()
+    {
+        if (!IsArmed)
+        {
+            // finds all the weapons in the room and chooses one at random
+            GameObject[] weaponsInRoom = GameObject.FindGameObjectsWithTag("Weapon");
+            int randomWeapon = Random.Range(0, weaponsInRoom.Length);
+
+            // equips the weapon to the murderer and removes that weapon from the scene
+            // this is for testing purposes only, it will be changed in week 4
+            weapon = weaponsInRoom[randomWeapon];
+            IsArmed = true;
+            Destroy(GameObject.FindGameObjectsWithTag("Weapon")[randomWeapon]);
+            Debug.Log(weapon);
+        }
     }
 
     /// <summary>
