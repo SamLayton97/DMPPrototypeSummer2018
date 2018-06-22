@@ -12,6 +12,8 @@ public class DayCounter : MonoBehaviour
     // End-day / day counter support
     GameManager gameManager;
     Text dayCounterText;
+    ActionPoints actionPoints;
+
 
     /// <summary>
     /// Called before Start() method
@@ -21,6 +23,7 @@ public class DayCounter : MonoBehaviour
         // retrieve necessary objects from scene
         gameManager = Camera.main.GetComponent<GameManager>();
         dayCounterText = GameObject.FindGameObjectWithTag("DaysRemainingText").GetComponent<Text>();
+        actionPoints = new ActionPoints();
     }
 
     // Use this for initialization
@@ -37,10 +40,15 @@ public class DayCounter : MonoBehaviour
     {
         gameManager.EndDay();
 
+        // resets actions points after ending day
+        actionPoints.CurrentAP = actionPoints.TotalAP;
+
+
         // update number of days left
         if (gameManager.DaysRemaining != 0)
             dayCounterText.text = "Days Left: " + gameManager.DaysRemaining;
         else
             dayCounterText.text = "FINAL DAY";
+        
     }
 }
