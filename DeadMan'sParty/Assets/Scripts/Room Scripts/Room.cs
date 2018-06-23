@@ -11,8 +11,8 @@ public class Room : MonoBehaviour
     #region Fields
 
     // capacity support fields
-    //[SerializeField]
-    public static int maxCapacity = 6;                                                // max num of characters to fit in room
+    [SerializeField]
+    int maxOccupancy = 4;                                            // max num of characters to fit in room
 
     public List<GameObject> occupants = new List<GameObject>();     // list of characters currently occupying room
 
@@ -40,13 +40,21 @@ public class Room : MonoBehaviour
     #region Properties
 
     /// <summary>
+    /// Returns max number of characters able to fit in room
+    /// </summary>
+    public int MaxOccupancy
+    {
+        get { return maxOccupancy; }
+    }
+
+    /// <summary>
     /// Returns whether room is at max capacity
     /// </summary>
     public bool IsFull
     {
         get
         {
-            if (occupants.Count > (maxCapacity - 1))
+            if (occupants.Count > (maxOccupancy - 1))
                 return true;
             else
                 return false;
@@ -127,7 +135,7 @@ public class Room : MonoBehaviour
     public virtual void Populate(GameObject newOccupant)
     {
         // if there is space in the room
-        if (occupants.Count < maxCapacity)
+        if (occupants.Count < maxOccupancy)
         {
             // add new occupant to list of occupants
             occupants.Add(newOccupant);
@@ -172,7 +180,7 @@ public class Room : MonoBehaviour
     /// </summary>
     protected virtual void Awake()
     {
-        occupantLocs = new Vector2[maxCapacity];
+        occupantLocs = new Vector2[maxOccupancy];
 
         // create temp character to save its dimentions and then destroy it
         GameObject tempChar = Instantiate(characterPrefab);
@@ -181,11 +189,11 @@ public class Room : MonoBehaviour
 
         // calculate initial coordinates to place occupants
         BoxCollider2D boxCollider2D = GetComponent<BoxCollider2D>();
-        float initialXLoc = transform.position.x - (characterRadius * ((float)maxCapacity / 4f));
+        float initialXLoc = transform.position.x - (characterRadius * ((float)maxOccupancy / 4f));
         float initialYLoc = transform.position.y + characterRadius;
 
         // calculate number of characters per row
-        int charsPerRow = (maxCapacity / 2) + (maxCapacity % 2);
+        int charsPerRow = (maxOccupancy / 2) + (maxOccupancy % 2);
 
         // store occupant placement locations according to saved dimensions
         // splits room into two rows

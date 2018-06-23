@@ -42,21 +42,27 @@ public class GameManager : MonoBehaviour
     List<GameObject> rooms = new List<GameObject>();    // a list storing each room in game
     [SerializeField]
     int numOfRooms = 4;                                 // total room count
+    int levelOccupancy = 0;                             // total number of characters able to fit into the scene
+                                                        // (dependant on collective occupancy of each room in scene)
     [SerializeField]
-    int maxNumOfRooms = 6;                              // max number of rooms in game
-    [SerializeField]
-    int occupancyOfRooms = Room.maxCapacity;                        // Occupancy of room
-    [SerializeField]
-    int minNumOfRooms = 2;                              // min number of rooms in game
-                                                        // NOTE: in any standard level, this should never be less than 2
-                                                        // as anything less removes the central game mechanic. Setting this to 1
-                                                        // should only be used for testing purposes.
-    // room initialization fields cont.
-    [SerializeField]
-    GameObject roomPrefab;                              // a prefab of the room game object
+    GameObject roomPrefab;                              // a temporary prefab of the room game object
     float roomWidth;                                    // width of the room
     float roomHeight;                                   // height of the room
-    Vector2[] roomLocations;                            // an array of room locations
+
+    // Serializations of room prefabs
+    // Note: Scene should never have greater than 6 or fewer than 2 rooms
+    [SerializeField]
+    GameObject prefabRoom1;
+    [SerializeField]
+    GameObject prefabRoom2;
+    [SerializeField]
+    GameObject prefabRoom3;
+    [SerializeField]
+    GameObject prefabRoom4;
+    [SerializeField]
+    GameObject prefabRoom5;
+    [SerializeField]
+    GameObject prefabRoom6;
 
     // lobby and gallows support fields
     GameObject lobbyInstance;           // the saved instance of a lobby prefab
@@ -358,43 +364,6 @@ public class GameManager : MonoBehaviour
         roomWidth = tempCollider.size.x;
         roomHeight = tempCollider.size.y;
         Destroy(tempRoom);
-
-        // save room locations into array of preset length
-        // confine number of rooms to given bounds
-        if (numOfRooms > maxNumOfRooms)
-            numOfRooms = maxNumOfRooms;
-        else if (numOfRooms < minNumOfRooms)
-            numOfRooms = minNumOfRooms;
-        roomLocations = new Vector2[numOfRooms + (numOfRooms % 2)];
-
-        // determine number of rows of rooms
-        int numOfRows = 0;
-        if (numOfRooms > 2)
-            numOfRows = 2;
-        else
-            numOfRows = 1;
-
-        // calculate initial coordinates to place rooms
-        float initialXLoc = 0 - roomWidth;
-        float initialYLoc = roomHeight * (numOfRows - 1);
-
-        // calculate number of rooms per row and modify initial x coordinate if appropriate
-        int roomsPerRow = (numOfRooms / numOfRows) + (numOfRooms % numOfRows);
-        if (roomsPerRow == 3)
-            initialXLoc -= .9f;
-
-        // store room placement locations according to saved dimensions
-        // splits game scene into appropriate number of rows
-        for (int i = 0; i < numOfRows; i++)
-        {
-            // fills spots of current row
-            for (int j = 0; j < roomsPerRow; j++)
-            {
-                roomLocations[((numOfRooms / 2 + numOfRooms % 2) * i) + j] = 
-                    new Vector2(initialXLoc + (j * roomWidth * (2 - .5f * (roomsPerRow - 2))),
-                    initialYLoc - (i * roomHeight * 2));
-            }
-        }
     }
 
     // Use this for initialization
@@ -405,18 +374,18 @@ public class GameManager : MonoBehaviour
         notifPopUp.text = "";
 
         // gets button component
-        continueButton = GameObject.FindGameObjectWithTag("ContinueButton").GetComponent<Button>();
-        continueButton.gameObject.SetActive(false);
+        //continueButton = GameObject.FindGameObjectWithTag("ContinueButton").GetComponent<Button>();
+        //continueButton.gameObject.SetActive(false);
 
         // find and save lobby and execution room from scene
         lobbyInstance = GameObject.FindGameObjectWithTag("lobby");
         exeRoomInstance = GameObject.FindGameObjectWithTag("executionRoom");
 
-        // instantiate a set of rooms and add them to a room list
-        for (int i = 0; i < numOfRooms; i++)
+        // add serialized room prefabs to list of rooms
+        GameObject[] roomsInScene = GameObject.FindGameObjectsWithTag("room");
+        foreach (GameObject roomGameObject in roomsInScene)
         {
-            GameObject room = Instantiate(roomPrefab, roomLocations[i], Quaternion.identity);
-            rooms.Add(room);
+            rooms.Add(roomGameObject);
         }
 
         // iterate through list of rooms
@@ -424,7 +393,14 @@ public class GameManager : MonoBehaviour
         {
             // set room number according to place in list
             room.GetComponent<Room>().RoomNumber = (rooms.IndexOf(room) + 1);
+
+            // calculate max occupancy of level
+            levelOccupancy += room.GetComponent<Room>().MaxOccupancy;
         }
+
+        // if number of characters exceeds occupancy of level, confine former to latter
+        if (numOfCharacters > levelOccupancy)
+            numOfCharacters = levelOccupancy;
 
         // Generate random murderer ID(s)
         murdererIDs = RandomSet.RandomSetOfInts(0, numOfCharacters, numOfKillers, true);

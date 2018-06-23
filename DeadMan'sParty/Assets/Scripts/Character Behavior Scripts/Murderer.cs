@@ -25,23 +25,6 @@ public class Murderer : MonoBehaviour
         set { isArmed = value; }
     }
 
-    void Start()
-    {
-        if (!IsArmed)
-        {
-            // finds all the weapons in the room and chooses one at random
-            GameObject[] weaponsInRoom = GameObject.FindGameObjectsWithTag("Weapon");
-            int randomWeapon = Random.Range(0, weaponsInRoom.Length);
-
-            // equips the weapon to the murderer and removes that weapon from the scene
-            // this is for testing purposes only, it will be changed in week 4
-            weapon = weaponsInRoom[randomWeapon];
-            IsArmed = true;
-            Destroy(GameObject.FindGameObjectsWithTag("Weapon")[randomWeapon]);
-            Debug.Log(weapon);
-        }
-    }
-
     /// <summary>
     /// Murderer determines whether to kill a neighbor
     /// </summary>
