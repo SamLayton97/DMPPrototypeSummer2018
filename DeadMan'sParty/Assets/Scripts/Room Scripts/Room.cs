@@ -11,9 +11,9 @@ public class Room : MonoBehaviour
     #region Fields
 
     // capacity support fields
-    [SerializeField]
-    int maxCapacity = GameManager.occupancyOfRooms;
-    //int maxCapacity = 4;                                            // max num of characters to fit in room
+    //[SerializeField]
+    public static int maxCapacity = 6;                                                // max num of characters to fit in room
+
     public List<GameObject> occupants = new List<GameObject>();     // list of characters currently occupying room
 
     // character space fields
@@ -208,13 +208,10 @@ public class Room : MonoBehaviour
         // OnMouseEnter() method
         Destroy(GetComponent<BoxCollider2D>());
     }
-	
-	// Update is called once per frame
-	void Update ()
+    // Update is called once per frame
+    void Update ()
     {
 
 	}
-
     #endregion
-
 }
