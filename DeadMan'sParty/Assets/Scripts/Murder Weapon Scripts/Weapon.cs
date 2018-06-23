@@ -8,7 +8,7 @@ using UnityEngine;
 /// Rather, it should be created and stored within room
 /// and murderer scripts.
 /// </summary>
-public class Weapon : MonoBehaviour
+public class Weapon
 {
     string weaponName;                                      // unique name of the weapon
     WeaponTypes type;                                       // universal type of weapon
@@ -68,6 +68,14 @@ public class Weapon : MonoBehaviour
     public string WeaponName
     {
         get { return weaponName; }
+    }
+
+    /// <summary>
+    /// Returns weapon's type
+    /// </summary>
+    public WeaponTypes Type
+    {
+        get { return type; }
     }
 
     /// <summary>

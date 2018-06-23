@@ -13,8 +13,7 @@ public class Room : MonoBehaviour
     // capacity support fields
     [SerializeField]
     int maxOccupancy = 4;                                            // max num of characters to fit in room
-
-    public List<GameObject> occupants = new List<GameObject>();     // list of characters currently occupying room
+    public List<GameObject> occupants = new List<GameObject>();      // list of characters currently occupying room
 
     // character space fields
     [SerializeField]
@@ -22,8 +21,21 @@ public class Room : MonoBehaviour
     protected float characterRadius;                        // radius of character's circle colliders
     Vector2[] occupantLocs;                                 // an array of occupant locations
 
+    // room-unique weapon creation fields
+    // Note: for proper creation of weapons, these arrays must align in inspector
+    [SerializeField]
+    string[] wepNames;          // serialized array of weapon names
+    [SerializeField]
+    WeaponTypes[] wepTypes;     // serialized array of weapon types
+
+    // weapon storage fields
+    List<Weapon> initWepList = new List<Weapon>();          // initial list of weapons stored in room
+    List<Weapon> currWepList = new List<Weapon>();          // current list of weapons stored in room
+                                                            // Note: Killers remove weapons from latter list. Former is for comparisons.
+
     // room identification fields
-    RoomNames roomName;
+    [SerializeField]
+    string roomName;
     int roomNumber = 0;
     SpriteRenderer spriteRenderer;
     [SerializeField]
@@ -119,7 +131,7 @@ public class Room : MonoBehaviour
     /// <summary>
     /// Provides get access to room's (i.e., building's) name / type
     /// </summary>
-    public RoomNames RoomName
+    public string RoomName
     {
         get { return roomName; }
     }
@@ -180,7 +192,11 @@ public class Room : MonoBehaviour
     /// </summary>
     protected virtual void Awake()
     {
-        occupantLocs = new Vector2[maxOccupancy];
+        // creates memory for occupant locations array that rounds up to nearest even number
+        if (maxOccupancy % 2 != 0)
+            occupantLocs = new Vector2[maxOccupancy + 1];
+        else
+            occupantLocs = new Vector2[maxOccupancy];
 
         // create temp character to save its dimentions and then destroy it
         GameObject tempChar = Instantiate(characterPrefab);
@@ -215,11 +231,30 @@ public class Room : MonoBehaviour
         // Note: this is done so as not to interfere with characters' colliders in the
         // OnMouseEnter() method
         Destroy(GetComponent<BoxCollider2D>());
-    }
-    // Update is called once per frame
-    void Update ()
-    {
 
-	}
+        // create set of weapons according to serialized fields
+        for (int i = 0; i < wepNames.Length; i++)
+        {
+            if (wepNames[i] != null)
+            {
+                Weapon wepToAdd = new Weapon(wepNames[i], wepTypes[i]);
+                initWepList.Add(wepToAdd);
+            }
+        }
+
+        // copy initial list to current list
+        foreach (Weapon weapon in initWepList)
+        {
+            currWepList.Add(weapon);
+        }
+
+        // TEST: Print weapons into debug console
+        foreach(Weapon weapon in currWepList)
+        {
+            Debug.Log(roomName + ": " + 
+                weapon.WeaponName + " " + weapon.Type);
+        }
+    }
+
     #endregion
 }

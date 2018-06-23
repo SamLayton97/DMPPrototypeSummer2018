@@ -44,10 +44,6 @@ public class GameManager : MonoBehaviour
     int numOfRooms = 4;                                 // total room count
     int levelOccupancy = 0;                             // total number of characters able to fit into the scene
                                                         // (dependant on collective occupancy of each room in scene)
-    [SerializeField]
-    GameObject roomPrefab;                              // a temporary prefab of the room game object
-    float roomWidth;                                    // width of the room
-    float roomHeight;                                   // height of the room
 
     // Serializations of room prefabs
     // Note: Scene should never have greater than 6 or fewer than 2 rooms
@@ -353,19 +349,6 @@ public class GameManager : MonoBehaviour
 
     #region Private Methods
 
-    /// <summary>
-    /// Called before the Start() method
-    /// </summary>
-    void Awake()
-    {
-        // create temp room to save its dimensions and then destroy it
-        GameObject tempRoom = Instantiate(roomPrefab);
-        BoxCollider2D tempCollider = tempRoom.GetComponent<BoxCollider2D>();
-        roomWidth = tempCollider.size.x;
-        roomHeight = tempCollider.size.y;
-        Destroy(tempRoom);
-    }
-
     // Use this for initialization
     void Start ()
     {
@@ -397,7 +380,7 @@ public class GameManager : MonoBehaviour
             // calculate max occupancy of level
             levelOccupancy += room.GetComponent<Room>().MaxOccupancy;
         }
-
+    
         // if number of characters exceeds occupancy of level, confine former to latter
         if (numOfCharacters > levelOccupancy)
             numOfCharacters = levelOccupancy;
