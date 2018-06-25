@@ -29,9 +29,9 @@ public class Room : MonoBehaviour
     WeaponTypes[] wepTypes;     // serialized array of weapon types
 
     // weapon storage fields
-    List<Weapon> initWepList = new List<Weapon>();          // initial list of weapons stored in room
-    List<Weapon> currWepList = new List<Weapon>();          // current list of weapons stored in room
-                                                            // Note: Killers remove weapons from latter list. Former is for comparisons.
+    List<Weapon> initWepList = new List<Weapon>();       // initial list of weapons stored in room
+    List<Weapon> currWepList = new List<Weapon>();       // current list of weapons stored in room
+                                                         // Note: Killers remove weapons from latter list. Former is for comparisons.
 
     // room identification fields
     [SerializeField]
@@ -50,6 +50,14 @@ public class Room : MonoBehaviour
     #endregion
 
     #region Properties
+
+    /// <summary>
+    /// Returns number of weapons currently stored in room
+    /// </summary>
+    public int NumOfWeapons
+    {
+        get { return currWepList.Count; }
+    }
 
     /// <summary>
     /// Returns max number of characters able to fit in room
@@ -139,6 +147,21 @@ public class Room : MonoBehaviour
     #endregion
 
     #region Public Methods
+
+    /// <summary>
+    /// Removes and returns a weapon from the current weapon list
+    /// </summary>
+    /// <param name="weaponID">location of desired weapon</param>
+    /// <returns>Weapon removed from list</returns>
+    public Weapon RemoveWeapon(int weaponID)
+    {
+        // saves copy of weapon and pops original from list
+        Weapon removedWeapon = currWepList[weaponID];
+        currWepList.RemoveAt(weaponID);
+
+        // return removed weapon
+        return removedWeapon;
+    }
 
     /// <summary>
     /// Populates room with a character from lobby
@@ -246,13 +269,6 @@ public class Room : MonoBehaviour
         foreach (Weapon weapon in initWepList)
         {
             currWepList.Add(weapon);
-        }
-
-        // TEST: Print weapons into debug console
-        foreach(Weapon weapon in currWepList)
-        {
-            Debug.Log(roomName + ": " + 
-                weapon.WeaponName + " " + weapon.Type);
         }
     }
 

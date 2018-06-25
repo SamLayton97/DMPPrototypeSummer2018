@@ -326,13 +326,25 @@ public class GameManager : MonoBehaviour
 
         // Note: win / lose conditions haven't been met
 
-        // arm any unarmed killers in game
-        // Note: Placeholder for week 3 version. In later version, killers will take weapons from
-        // list of weapons in their current room.
-        //foreach(GameObject killer in murderers)
-        //{
-        //    killer.GetComponent<Murderer>().IsArmed = true;
-        //}
+        // finally, arm any unarmed killers in game
+        foreach (GameObject killer in murderers)
+        {
+            Murderer killerComp = killer.GetComponent<Murderer>();
+
+            // if killer isn't armed
+            if (!killerComp.IsArmed)
+            {
+                // arm killer and set them to be inactive for night
+                killerComp.Arm();
+                killerComp.IsActive = false;
+            }
+            // otherwise (killer currently holds weapon)
+            else
+            {
+                // set killer to be active tonight (i.e., can determine to strike tonight)
+                killerComp.IsActive = true;
+            }
+        }
 
         // pass killer-to-strike on to next killer in list
         killerToStrike++;
@@ -341,8 +353,10 @@ public class GameManager : MonoBehaviour
             killerToStrike = 0;
         }
 
-        // killer to strike tonight determines to kill a roommate
-        murderers[killerToStrike].GetComponent<Murderer>().DetermineToKill();
+        // finally, if killer to strike tonight is active
+        // they determine to kill a roommate
+        if (murderers[killerToStrike].GetComponent<Murderer>().IsActive)
+            murderers[killerToStrike].GetComponent<Murderer>().DetermineToKill();
     }
 
     #endregion

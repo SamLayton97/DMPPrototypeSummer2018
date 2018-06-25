@@ -339,9 +339,9 @@ MonoBehaviour:
   characterPrefab: {fileID: 1899721702212578, guid: ced22b965e8befb4690d07cfbb2cc7ec,
     type: 2}
   numOfCharacters: 16
-  numOfKillers: 2
+  numOfKillers: 1
   numOfRooms: 4
-  prefabRoom1: {fileID: 0}
+  prefabRoom1: {fileID: 541934960}
   prefabRoom2: {fileID: 405912582}
   prefabRoom3: {fileID: 2098287141}
   prefabRoom4: {fileID: 1405210519}
@@ -489,6 +489,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5a49d9d10f29aa74890596b244591940, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &541934960 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1065006022763434, guid: 5a49d9d10f29aa74890596b244591940,
+    type: 2}
+  m_PrefabInternal: {fileID: 541934959}
 --- !u!1001 &563606805
 Prefab:
   m_ObjectHideFlags: 0

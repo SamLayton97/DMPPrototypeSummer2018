@@ -10,19 +10,77 @@ public class Murderer : MonoBehaviour
     List<GameObject> killList = new List<GameObject>();
 
     // murder weapon support fields
-    GameObject weapon;                      // current weapon equipped. changed to gameobject for testing
+    Weapon weapon;                      // current weapon equipped
     bool isArmed = false;               // flag indicating whether killer has weapon
                                         // Note: this flag is a placeholder for the week 3 version
 
+    bool isActive = false;              // flag determining whether killer can strike tonight
+                                        // Note: this flag is lowered if killer takes weapon during current night
+
+    #region Properties
+
     /// <summary>
-    /// Provides get access to whether killer has weapon on them
-    /// Placeholder Note: Property also provides set access until proper
-    /// weapon support in rooms is in place
+    /// Provides get and set access to whether killer is active enough to strike tonight
+    /// </summary>
+    public bool IsActive
+    {
+        get { return isActive; }
+        set { isActive = value; }
+    }
+
+    /// <summary>
+    /// Provides get to whether killer has weapon on them
     /// </summary>
     public bool IsArmed
     {
         get { return isArmed; }
-        set { isArmed = value; }
+    }
+
+    /// <summary>
+    /// Provides get access to name of killer's weapon
+    /// </summary>
+    public string WeaponName
+    {
+        get { return weapon.WeaponName; }
+    }
+
+    /// <summary>
+    /// Provides get access to type of killer's weapon
+    /// </summary>
+    public WeaponTypes WeaponType
+    {
+        get { return weapon.Type; }
+    }
+
+    #endregion
+
+    #region Methods
+
+    /// <summary>
+    /// Arms murderer with weapon from their current room
+    /// </summary>
+    public void Arm()
+    {
+        // retreives current room of killer-character 
+        // and number of weapons stored in said room
+        Room currRoom = GetComponent<Character>().CurrentRoom.GetComponent<Room>();
+        int numOfWeapons = currRoom.NumOfWeapons;
+
+        // if room holds no weapons, break from arming process with printed error
+        if (numOfWeapons < 1)
+        {
+            Debug.Log("Error: Murderer attempting to pull weapon from empty room.");
+            return;
+        }
+
+        // randomly removes weapon from room 
+        // and sets killer's weapon to this
+        int wepID = Random.Range(0, numOfWeapons);
+        weapon = currRoom.RemoveWeapon(wepID);
+
+        // sets killer's 'is armed' flag to true
+        // and killer's 'is active' flag to false
+        isArmed = true;
     }
 
     /// <summary>
@@ -68,7 +126,7 @@ public class Murderer : MonoBehaviour
         else
         {
             // Print error to Debug console
-            Debug.Log("Error: Killer determining to kill without a weapon.");
+            Debug.Log("Killer holds off to find a weapon.");
         }
     }
 
@@ -93,7 +151,10 @@ public class Murderer : MonoBehaviour
         Destroy(victim);
 
         // disarm killer
-        // Note: This is a placeholder until full weapon implementation in rooms is complete
+        weapon = null;
         isArmed = false;
     }
+
+    #endregion
+
 }
