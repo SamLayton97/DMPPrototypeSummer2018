@@ -18,6 +18,7 @@ TagManager:
   - CharacterMenu
   - ActionButton
   - Weapon
+  - corpse
   layers:
   - Default
   - TransparentFX
