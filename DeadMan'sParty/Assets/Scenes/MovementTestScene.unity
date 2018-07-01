@@ -150,7 +150,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4082880811670092, guid: ced22b965e8befb4690d07cfbb2cc7ec, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 50145740249413816, guid: ced22b965e8befb4690d07cfbb2cc7ec,
         type: 2}
@@ -181,6 +181,16 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114383485210133970, guid: 5a49d9d10f29aa74890596b244591940,
+        type: 2}
+      propertyPath: wepNames.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114383485210133970, guid: 5a49d9d10f29aa74890596b244591940,
+        type: 2}
+      propertyPath: wepTypes.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4720497769422208, guid: 5a49d9d10f29aa74890596b244591940, type: 2}
       propertyPath: m_LocalPosition.x
       value: 2.5149379
@@ -226,6 +236,21 @@ Prefab:
         type: 2}
       propertyPath: m_GravityScale
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114383485210133970, guid: 5a49d9d10f29aa74890596b244591940,
+        type: 2}
+      propertyPath: roomName
+      value: Poop
+      objectReference: {fileID: 0}
+    - target: {fileID: 114383485210133970, guid: 5a49d9d10f29aa74890596b244591940,
+        type: 2}
+      propertyPath: wepNames.Array.data[0]
+      value: Gat
+      objectReference: {fileID: 0}
+    - target: {fileID: 114383485210133970, guid: 5a49d9d10f29aa74890596b244591940,
+        type: 2}
+      propertyPath: wepNames.Array.data[1]
+      value: Goose
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a49d9d10f29aa74890596b244591940, type: 2}
@@ -307,3 +332,93 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1446083311
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 114383485210133970, guid: 5a49d9d10f29aa74890596b244591940,
+        type: 2}
+      propertyPath: wepNames.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114383485210133970, guid: 5a49d9d10f29aa74890596b244591940,
+        type: 2}
+      propertyPath: wepTypes.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4720497769422208, guid: 5a49d9d10f29aa74890596b244591940, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 2.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4720497769422208, guid: 5a49d9d10f29aa74890596b244591940, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -2.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 4720497769422208, guid: 5a49d9d10f29aa74890596b244591940, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4720497769422208, guid: 5a49d9d10f29aa74890596b244591940, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4720497769422208, guid: 5a49d9d10f29aa74890596b244591940, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4720497769422208, guid: 5a49d9d10f29aa74890596b244591940, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4720497769422208, guid: 5a49d9d10f29aa74890596b244591940, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4720497769422208, guid: 5a49d9d10f29aa74890596b244591940, type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1065006022763434, guid: 5a49d9d10f29aa74890596b244591940, type: 2}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 50842721654388860, guid: 5a49d9d10f29aa74890596b244591940,
+        type: 2}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50842721654388860, guid: 5a49d9d10f29aa74890596b244591940,
+        type: 2}
+      propertyPath: m_GravityScale
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114383485210133970, guid: 5a49d9d10f29aa74890596b244591940,
+        type: 2}
+      propertyPath: roomName
+      value: Shit
+      objectReference: {fileID: 0}
+    - target: {fileID: 1065006022763434, guid: 5a49d9d10f29aa74890596b244591940, type: 2}
+      propertyPath: m_Name
+      value: room (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114383485210133970, guid: 5a49d9d10f29aa74890596b244591940,
+        type: 2}
+      propertyPath: wepNames.Array.data[0]
+      value: Knife
+      objectReference: {fileID: 0}
+    - target: {fileID: 114383485210133970, guid: 5a49d9d10f29aa74890596b244591940,
+        type: 2}
+      propertyPath: wepNames.Array.data[1]
+      value: Shoe
+      objectReference: {fileID: 0}
+    - target: {fileID: 114383485210133970, guid: 5a49d9d10f29aa74890596b244591940,
+        type: 2}
+      propertyPath: wepNames.Array.data[2]
+      value: Poo
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5a49d9d10f29aa74890596b244591940, type: 2}
+  m_IsPrefabAsset: 0
