@@ -24,9 +24,7 @@ public class Room : MonoBehaviour
     // Room interaction fields
     public float distance = 1f;
     GameObject box;
-    bool drawInteractionOption = false;
-    bool drawName = false;
-    bool drawItems;
+    bool drawGui = false;
 
     // room-unique weapon creation fields
     // Note: for proper creation of weapons, these arrays must align in inspector
@@ -38,8 +36,6 @@ public class Room : MonoBehaviour
     // weapon storage fields
     List<Weapon> initWepList = new List<Weapon>();       // initial list of weapons stored in room
     List<Weapon> currWepList = new List<Weapon>();       // current list of weapons stored in room
-
-    //string testString = string.Join(',',currWepList);
                                                          // Note: Killers remove weapons from latter list. Former is for comparisons.
 
     // room identification fields
@@ -291,24 +287,22 @@ public class Room : MonoBehaviour
         Physics2D.queriesStartInColliders = false;
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.left * transform.localScale.x * 1.5f, distance, boxMask);
 
-        // Interaction check
+        // E to interact check
         if (hit.collider != null)
         {
-            drawInteractionOption = true;
+            drawGui = true;
             box = hit.collider.gameObject;
         }
         else
         {
-            drawInteractionOption = false;
-            drawName = false;
+            drawGui = false;
         }
 
         // checks if the collider and ray is being hit and if e is being pressed
         if (hit.collider != null && Input.GetKey(KeyCode.E))
         {
             box = hit.collider.gameObject;
-            drawName = true;
-            // drawInteractionOption = false;
+            Debug.Log("ray hit and e pressed");
         }
     }
 
@@ -319,25 +313,12 @@ public class Room : MonoBehaviour
         Gizmos.DrawLine(transform.position, (Vector2)transform.position + Vector2.left * transform.localScale.x * distance * 1.5f);
     }
 
-    // Draw GUI
     void OnGUI()
     {
-        if (drawInteractionOption == true)
+        if (drawGui == true)
         {
             GUI.Label(new Rect(10,10, Screen.width, Screen.height), "PRESS E TO INTERACT");
         }
-        if (drawName == true)
-        {
-            GUI.Label(new Rect(10, 30, Screen.width, Screen.height), "Room: " +  roomName);
-            //GUI.Label(new Rect(15, 30, Screen.width, Screen.height), roomName);
-            GUI.Label(new Rect(10, 60, Screen.width, Screen.height), "Weapons in Room:");
-            for (int i = 0; i < currWepList.Count; i++)
-            {
-                    GUI.Label(new Rect(15, 75 + (i * 15), Screen.width, Screen.height), " - " + currWepList[i].WeaponName);
-            }
-            
-        }
-        
     }
     #endregion
 }
