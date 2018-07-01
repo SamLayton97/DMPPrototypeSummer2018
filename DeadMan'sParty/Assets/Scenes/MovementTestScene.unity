@@ -5,12 +5,10 @@ OcclusionCullingSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_OcclusionBakeSettings:
-    smallestOccluder: 5
     smallestHole: 0.25
     backfaceThreshold: 100
   m_SceneGUID: 00000000000000000000000000000000
   m_OcclusionCullingData: {fileID: 0}
---- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
@@ -114,7 +112,27 @@ NavMeshSettings:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+--- !u!1 &242840218 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1899721702212578, guid: ced22b965e8befb4690d07cfbb2cc7ec,
+    type: 2}
+  m_PrefabInternal: {fileID: 452246256}
+--- !u!114 &242840219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 242840218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7a5afc7a0fd7fe45808efcb23fbde3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementForce: 4
+>>>>>>> parent of 6462ba0... w4v4
 --- !u!1001 &452246256
 Prefab:
   m_ObjectHideFlags: 0
@@ -152,30 +170,12 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4082880811670092, guid: ced22b965e8befb4690d07cfbb2cc7ec, type: 2}
       propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 50145740249413816, guid: ced22b965e8befb4690d07cfbb2cc7ec,
-        type: 2}
-      propertyPath: m_BodyType
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 50145740249413816, guid: ced22b965e8befb4690d07cfbb2cc7ec,
-        type: 2}
-      propertyPath: m_GravityScale
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1899721702212578, guid: ced22b965e8befb4690d07cfbb2cc7ec, type: 2}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 58804394093249606, guid: ced22b965e8befb4690d07cfbb2cc7ec,
-        type: 2}
-      propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ced22b965e8befb4690d07cfbb2cc7ec, type: 2}
   m_IsPrefabAsset: 0
+<<<<<<< HEAD
 --- !u!1001 &1049669691
 Prefab:
   m_ObjectHideFlags: 0
@@ -233,6 +233,8 @@ Prefab:
   m_SourcePrefab: {fileID: 100100000, guid: 5a49d9d10f29aa74890596b244591940, type: 2}
   m_IsPrefabAsset: 0
 >>>>>>> parent of f470fa3... w4v5
+=======
+>>>>>>> parent of 6462ba0... w4v4
 --- !u!1 &1381053304
 GameObject:
   m_ObjectHideFlags: 0

@@ -26,7 +26,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1065006022763434}
+<<<<<<< HEAD
   m_IsPrefabParent: 0
+=======
+  m_IsPrefabParent: 1
+>>>>>>> parent of 6462ba0... w4v4
 --- !u!1 &1065006022763434
 GameObject:
   m_ObjectHideFlags: 0
@@ -38,7 +42,6 @@ GameObject:
   - component: {fileID: 212500131441000314}
   - component: {fileID: 61447354194850752}
   - component: {fileID: 114383485210133970}
-  - component: {fileID: 50842721654388860}
   m_Layer: 9
   m_Name: room
   m_TagString: room
@@ -53,12 +56,18 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1065006022763434}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+<<<<<<< HEAD
   m_LocalPosition: {x: 2.964, y: 0.957, z: 0}
   m_LocalScale: {x: 1.4991964, y: 1.6610974, z: 1}
+=======
+  m_LocalPosition: {x: -7.101129, y: 0.07874128, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+>>>>>>> parent of 6462ba0... w4v4
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
 --- !u!50 &50842721654388860
 Rigidbody2D:
   serializedVersion: 4
@@ -79,6 +88,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+=======
+>>>>>>> parent of 6462ba0... w4v4
 --- !u!61 &61447354194850752
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -115,14 +126,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cf2ccba17142c94cbc38feb4b34ef74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxOccupancy: 4
-  occupants: []
   characterPrefab: {fileID: 1899721702212578, guid: ced22b965e8befb4690d07cfbb2cc7ec,
     type: 2}
-  distance: 1
-  wepNames: []
-  wepTypes: 
-  roomName: 
   room1Sprite: {fileID: 21300000, guid: b0934910d18e213448e15aa490c58d22, type: 3}
   room2Sprite: {fileID: 21300000, guid: b2fc45f243a4a08479594d6dea9a9625, type: 3}
   room3Sprite: {fileID: 21300000, guid: 01ebcd013bb82594bb21edfa42c06164, type: 3}
