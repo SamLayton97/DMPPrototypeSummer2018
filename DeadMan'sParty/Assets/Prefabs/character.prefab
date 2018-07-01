@@ -6,22 +6,17 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 0}
-      propertyPath: corpsePrefab
-      value: 
-      objectReference: {fileID: 1668647402672540, guid: f5aeff2dee7c9984a862c34f253612c6,
-        type: 2}
+    m_Modifications: []
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 0}
+  m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1899721702212578}
-  m_IsPrefabParent: 0
+  m_IsPrefabAsset: 1
 --- !u!1 &1899721702212578
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 4082880811670092}
   - component: {fileID: 212717110955774358}
@@ -40,7 +35,7 @@ GameObject:
 --- !u!4 &4082880811670092
 Transform:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1899721702212578}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -54,7 +49,7 @@ Transform:
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1899721702212578}
   m_BodyType: 2
@@ -73,7 +68,7 @@ Rigidbody2D:
 --- !u!58 &58804394093249606
 CircleCollider2D:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1899721702212578}
   m_Enabled: 1
@@ -88,7 +83,7 @@ CircleCollider2D:
 --- !u!114 &114457755391620880
 MonoBehaviour:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1899721702212578}
   m_Enabled: 1
@@ -98,12 +93,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterSprite: {fileID: 21300000, guid: a018971102502ad428cd1d9147dbdaf6, type: 3}
   murdererSprite: {fileID: 21300000, guid: 140615fb58700a94a885a379d17e7284, type: 3}
-  corpsePrefab: {fileID: 1668647402672540, guid: f5aeff2dee7c9984a862c34f253612c6,
-    type: 2}
 --- !u!114 &114460643758653694
 MonoBehaviour:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1899721702212578}
   m_Enabled: 1
@@ -115,7 +108,7 @@ MonoBehaviour:
 --- !u!114 &114564581534169818
 MonoBehaviour:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1899721702212578}
   m_Enabled: 1
@@ -128,7 +121,7 @@ MonoBehaviour:
 --- !u!212 &212717110955774358
 SpriteRenderer:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1899721702212578}
   m_Enabled: 1
@@ -170,3 +163,4 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0

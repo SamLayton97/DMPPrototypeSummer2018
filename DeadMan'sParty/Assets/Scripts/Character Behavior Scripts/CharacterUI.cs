@@ -22,11 +22,8 @@ public class CharacterUI : MonoBehaviour
         // finds name pop-up UI object and saves its text component
         nameText = GameObject.FindGameObjectWithTag("nametag").GetComponent<Text>();
 
-        // saves name of this character (pulled from appropriate component)
-        if (!CompareTag("corpse"))
-            characterName = GetComponent<Character>().CharName;
-        else
-            characterName = GetComponent<Corpse>().VictimName;
+        // saves name of this character
+        characterName = GetComponent<Character>().CharName;
 	}
 
     /// <summary>
@@ -36,12 +33,7 @@ public class CharacterUI : MonoBehaviour
     {
         // set text to display character's name
         nameText.text = characterName.ToString();
-
-        // sets color of text appropriate to whether character is alive
-        if (!CompareTag("corpse"))
-            nameText.color = Color.black;
-        else
-            nameText.color = Color.red;
+        nameText.color = Color.black;
     }
 
     /// <summary>

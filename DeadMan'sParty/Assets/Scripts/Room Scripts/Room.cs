@@ -173,9 +173,9 @@ public class Room : MonoBehaviour
     }
 
     /// <summary>
-    /// Populates room with a character / corpse from lobby
+    /// Populates room with a character from lobby
     /// </summary>
-    /// <param name="character">character / corpse to be added to room</param>
+    /// <param name="character">character to be added to room</param>
     public virtual void Populate(GameObject newOccupant)
     {
         // if there is space in the room
@@ -184,12 +184,8 @@ public class Room : MonoBehaviour
             // add new occupant to list of occupants
             occupants.Add(newOccupant);
 
-            // set new occupant's current room to this
-            // Note: this is dependant on the occupant's type
-            if (!newOccupant.CompareTag("corpse"))
-                newOccupant.GetComponent<Character>().CurrentRoom = gameObject;
-            else
-                newOccupant.GetComponent<Corpse>().CurrentRoom = gameObject;
+            // set occupant's current room to this
+            newOccupant.GetComponent<Character>().CurrentRoom = gameObject;
 
             // move character to first free space in room
             Vector2 firstFreeLoc = occupantLocs[occupants.Count - 1];

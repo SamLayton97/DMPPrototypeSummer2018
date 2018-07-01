@@ -23,10 +23,6 @@ public class Character : MonoBehaviour
     bool isMurderer = false;
     GameObject currentRoom;
 
-    // corpse instantiation fields
-    [SerializeField]
-    GameObject corpsePrefab;
-
     #endregion
 
     #region Properties
@@ -69,36 +65,11 @@ public class Character : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
+
+
     #endregion
 
     #region Public Methods
-
-    /// <summary>
-    /// Called when character is killed by murderer
-    /// Properly removes char from game and creates
-    /// corpse with appropriate causes of death
-    /// </summary>
-    /// <param name="weaponType">weapon type used to kill character</param>
-    public void Die(WeaponTypes weaponType)
-    {
-        // PLACEHOLDER
-        // Log victim's death to console
-        Debug.Log(charName + "has been killed!");
-
-        // remove character from their current room
-        Room currRoomScript = currentRoom.GetComponent<Room>();
-        currRoomScript.Remove(gameObject);
-
-        // create corpse with appropriate cause of death
-        // and add them to the current room
-        Vector2 corpseSpawnLoc = new Vector2(transform.position.x, transform.position.y);
-        GameObject newCorpse = Instantiate(corpsePrefab, corpseSpawnLoc, Quaternion.identity);
-        newCorpse.GetComponent<Corpse>().WeaponTypeUsed = weaponType;
-        currRoomScript.Populate(newCorpse);
-
-        // destroy victim game object
-        Destroy(gameObject);
-    }
 
     /// <summary>
     /// Sets basic data of character upon instantiation

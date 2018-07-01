@@ -7,9 +7,6 @@ using UnityEngine;
 /// </summary>
 public class Murderer : MonoBehaviour
 {
-
-    #region Fields
-
     List<GameObject> killList = new List<GameObject>();
 
     // murder weapon support fields
@@ -19,8 +16,6 @@ public class Murderer : MonoBehaviour
 
     bool isActive = false;              // flag determining whether killer can strike tonight
                                         // Note: this flag is lowered if killer takes weapon during current night
-
-    #endregion
 
     #region Properties
 
@@ -35,17 +30,10 @@ public class Murderer : MonoBehaviour
 
     /// <summary>
     /// Provides get to whether killer has weapon on them
-    /// by checking whether their weapon field is populated
     /// </summary>
     public bool IsArmed
     {
-        get
-        {
-            if (weapon != null)
-                return true;
-            else
-                return false;
-        }
+        get { return isArmed; }
     }
 
     /// <summary>
@@ -67,15 +55,6 @@ public class Murderer : MonoBehaviour
     #endregion
 
     #region Methods
-
-    /// <summary>
-    /// Disarms killer of their current weapon
-    /// Called when they lose weapon after killing victim
-    /// </summary>
-    void Disarm()
-    {
-        weapon = null;
-    }
 
     /// <summary>
     /// Arms murderer with weapon from their current room
@@ -157,9 +136,23 @@ public class Murderer : MonoBehaviour
     /// <param name="victim">character to be killed by murderer</param>
     void Kill(GameObject victim)
     {
-        // kill victim and disarm killer
-        victim.GetComponent<Character>().Die(weapon.Type);
-        Disarm();
+        // save victim's character component and current room
+        Character victimScript = victim.GetComponent<Character>();
+        Room currRoom = victimScript.CurrentRoom.GetComponent<Room>();
+
+        // log victim's murder to console
+        // Note: placeholder for first iteration
+        Debug.Log(victimScript.CharName + " has been killed!");
+
+        // remove character from current room
+        currRoom.Remove(victim);
+
+        // destroy victim
+        Destroy(victim);
+
+        // disarm killer
+        weapon = null;
+        isArmed = false;
     }
 
     #endregion
