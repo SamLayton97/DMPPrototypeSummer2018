@@ -113,8 +113,11 @@ NavMeshSettings:
   m_NavMeshData: {fileID: 0}
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
+=======
+>>>>>>> parent of 6462ba0... w4v4
 --- !u!1 &242840218 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1899721702212578, guid: ced22b965e8befb4690d07cfbb2cc7ec,
@@ -132,6 +135,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementForce: 4
+<<<<<<< HEAD
+>>>>>>> parent of 6462ba0... w4v4
+=======
 >>>>>>> parent of 6462ba0... w4v4
 --- !u!1001 &452246256
 Prefab:
@@ -175,6 +181,7 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ced22b965e8befb4690d07cfbb2cc7ec, type: 2}
   m_IsPrefabAsset: 0
+<<<<<<< HEAD
 <<<<<<< HEAD
 --- !u!1001 &1049669691
 Prefab:
@@ -233,6 +240,8 @@ Prefab:
   m_SourcePrefab: {fileID: 100100000, guid: 5a49d9d10f29aa74890596b244591940, type: 2}
   m_IsPrefabAsset: 0
 >>>>>>> parent of f470fa3... w4v5
+=======
+>>>>>>> parent of 6462ba0... w4v4
 =======
 >>>>>>> parent of 6462ba0... w4v4
 --- !u!1 &1381053304

@@ -27,7 +27,11 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1065006022763434}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_IsPrefabParent: 0
+=======
+  m_IsPrefabParent: 1
+>>>>>>> parent of 6462ba0... w4v4
 =======
   m_IsPrefabParent: 1
 >>>>>>> parent of 6462ba0... w4v4
@@ -57,9 +61,12 @@ Transform:
   m_GameObject: {fileID: 1065006022763434}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_LocalPosition: {x: 2.964, y: 0.957, z: 0}
   m_LocalScale: {x: 1.4991964, y: 1.6610974, z: 1}
 =======
+=======
+>>>>>>> parent of 6462ba0... w4v4
   m_LocalPosition: {x: -7.101129, y: 0.07874128, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
 >>>>>>> parent of 6462ba0... w4v4
@@ -67,6 +74,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
 <<<<<<< HEAD
 --- !u!50 &50842721654388860
 Rigidbody2D:
@@ -88,6 +96,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+=======
+>>>>>>> parent of 6462ba0... w4v4
 =======
 >>>>>>> parent of 6462ba0... w4v4
 --- !u!61 &61447354194850752
