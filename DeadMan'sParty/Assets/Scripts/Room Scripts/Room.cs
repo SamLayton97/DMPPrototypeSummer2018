@@ -21,6 +21,11 @@ public class Room : MonoBehaviour
     protected float characterRadius;                        // radius of character's circle colliders
     Vector2[] occupantLocs;                                 // an array of occupant locations
 
+    // Room interaction fields
+    public float distance = 1f;
+    GameObject box;
+    bool drawGui = false;
+
     // room-unique weapon creation fields
     // Note: for proper creation of weapons, these arrays must align in inspector
     [SerializeField]
@@ -272,5 +277,48 @@ public class Room : MonoBehaviour
         }
     }
 
+    // Update updates based on local framerate
+    void Update()
+    {
+        // defines boxmax on layer 8 (i.e. character)
+        int boxMask = 1 << 8;
+
+        // Create and store hit raycast
+        Physics2D.queriesStartInColliders = false;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.left * transform.localScale.x * 1.5f, distance, boxMask);
+
+        // E to interact check
+        if (hit.collider != null)
+        {
+            drawGui = true;
+            box = hit.collider.gameObject;
+        }
+        else
+        {
+            drawGui = false;
+        }
+
+        // checks if the collider and ray is being hit and if e is being pressed
+        if (hit.collider != null && Input.GetKey(KeyCode.E))
+        {
+            box = hit.collider.gameObject;
+            Debug.Log("ray hit and e pressed");
+        }
+    }
+
+    // draw line in scene view to represent ray
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(transform.position, (Vector2)transform.position + Vector2.left * transform.localScale.x * distance * 1.5f);
+    }
+
+    void OnGUI()
+    {
+        if (drawGui == true)
+        {
+            GUI.Label(new Rect(10,10, Screen.width, Screen.height), "PRESS E TO INTERACT");
+        }
+    }
     #endregion
 }

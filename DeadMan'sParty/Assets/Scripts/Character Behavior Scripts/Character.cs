@@ -65,6 +65,8 @@ public class Character : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
+
+
     #endregion
 
     #region Public Methods
