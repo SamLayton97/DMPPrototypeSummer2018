@@ -394,7 +394,7 @@ public class GameManager : MonoBehaviour
             // calculate max occupancy of level
             levelOccupancy += room.GetComponent<Room>().MaxOccupancy;
         }
-    
+
         // if number of characters exceeds occupancy of level, confine former to latter
         if (numOfCharacters > levelOccupancy)
             numOfCharacters = levelOccupancy;
