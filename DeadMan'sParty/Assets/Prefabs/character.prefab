@@ -71,6 +71,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterSprite: {fileID: 21300000, guid: a018971102502ad428cd1d9147dbdaf6, type: 3}
   murdererSprite: {fileID: 21300000, guid: 140615fb58700a94a885a379d17e7284, type: 3}
+  corpsePrefab: {fileID: 1668647402672540, guid: f5aeff2dee7c9984a862c34f253612c6,
+    type: 2}
 --- !u!114 &114564581534169818
 MonoBehaviour:
   m_ObjectHideFlags: 1

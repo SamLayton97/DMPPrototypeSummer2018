@@ -11,9 +11,6 @@ public class Murderer : MonoBehaviour
 
     // murder weapon support fields
     Weapon weapon;                      // current weapon equipped
-    bool isArmed = false;               // flag indicating whether killer has weapon
-                                        // Note: this flag is a placeholder for the week 3 version
-
     bool isActive = false;              // flag determining whether killer can strike tonight
                                         // Note: this flag is lowered if killer takes weapon during current night
 
@@ -30,10 +27,17 @@ public class Murderer : MonoBehaviour
 
     /// <summary>
     /// Provides get to whether killer has weapon on them
+    /// by checking whether their weapon field is populated
     /// </summary>
     public bool IsArmed
     {
-        get { return isArmed; }
+        get
+        {
+            if (weapon != null)
+                return true;
+            else
+                return false;
+        }
     }
 
     /// <summary>
@@ -77,10 +81,15 @@ public class Murderer : MonoBehaviour
         // and sets killer's weapon to this
         int wepID = Random.Range(0, numOfWeapons);
         weapon = currRoom.RemoveWeapon(wepID);
+    }
 
-        // sets killer's 'is armed' flag to true
-        // and killer's 'is active' flag to false
-        isArmed = true;
+    /// <summary>
+    /// Disarms killer of their current weapon
+    /// Called when they lose weapon after killing victim
+    /// </summary>
+    void Disarm()
+    {
+        weapon = null;
     }
 
     /// <summary>
@@ -89,7 +98,7 @@ public class Murderer : MonoBehaviour
     public void DetermineToKill()
     {
         // if murderer is armed
-        if (isArmed)
+        if (weapon != null)
         {
             // generate kill list from occupants of current room
             Room currRoom = GetComponent<Character>().CurrentRoom.GetComponent<Room>();
@@ -136,23 +145,9 @@ public class Murderer : MonoBehaviour
     /// <param name="victim">character to be killed by murderer</param>
     void Kill(GameObject victim)
     {
-        // save victim's character component and current room
-        Character victimScript = victim.GetComponent<Character>();
-        Room currRoom = victimScript.CurrentRoom.GetComponent<Room>();
-
-        // log victim's murder to console
-        // Note: placeholder for first iteration
-        Debug.Log(victimScript.CharName + " has been killed!");
-
-        // remove character from current room
-        currRoom.Remove(victim);
-
-        // destroy victim
-        Destroy(victim);
-
-        // disarm killer
-        weapon = null;
-        isArmed = false;
+        // kill victim and disarm killer
+        victim.GetComponent<Character>().Die(weapon.Type);
+        Disarm();
     }
 
     #endregion

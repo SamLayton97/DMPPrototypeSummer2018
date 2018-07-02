@@ -130,6 +130,16 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114426667237072042, guid: 185d3ed871db89f458b61424a2d5c529,
+        type: 2}
+      propertyPath: wepNames.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114426667237072042, guid: 185d3ed871db89f458b61424a2d5c529,
+        type: 2}
+      propertyPath: wepTypes.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4819691474768178, guid: 185d3ed871db89f458b61424a2d5c529, type: 2}
       propertyPath: m_LocalPosition.x
       value: 1.4
@@ -165,6 +175,36 @@ Prefab:
     - target: {fileID: 1339038604418626, guid: 185d3ed871db89f458b61424a2d5c529, type: 2}
       propertyPath: m_Name
       value: room (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114426667237072042, guid: 185d3ed871db89f458b61424a2d5c529,
+        type: 2}
+      propertyPath: roomName
+      value: Armory
+      objectReference: {fileID: 0}
+    - target: {fileID: 114426667237072042, guid: 185d3ed871db89f458b61424a2d5c529,
+        type: 2}
+      propertyPath: wepNames.Array.data[0]
+      value: Sword
+      objectReference: {fileID: 0}
+    - target: {fileID: 114426667237072042, guid: 185d3ed871db89f458b61424a2d5c529,
+        type: 2}
+      propertyPath: wepNames.Array.data[1]
+      value: Mace
+      objectReference: {fileID: 0}
+    - target: {fileID: 114426667237072042, guid: 185d3ed871db89f458b61424a2d5c529,
+        type: 2}
+      propertyPath: wepNames.Array.data[2]
+      value: Spear
+      objectReference: {fileID: 0}
+    - target: {fileID: 114426667237072042, guid: 185d3ed871db89f458b61424a2d5c529,
+        type: 2}
+      propertyPath: wepTypes.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114426667237072042, guid: 185d3ed871db89f458b61424a2d5c529,
+        type: 2}
+      propertyPath: wepTypes.Array.data[2]
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 185d3ed871db89f458b61424a2d5c529, type: 2}
@@ -644,7 +684,7 @@ Prefab:
     - target: {fileID: 114426667237072042, guid: 185d3ed871db89f458b61424a2d5c529,
         type: 2}
       propertyPath: roomName
-      value: BUthcer's Shop
+      value: Buthcer's Shop
       objectReference: {fileID: 0}
     - target: {fileID: 114426667237072042, guid: 185d3ed871db89f458b61424a2d5c529,
         type: 2}
@@ -933,6 +973,16 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114426667237072042, guid: 185d3ed871db89f458b61424a2d5c529,
+        type: 2}
+      propertyPath: wepNames.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114426667237072042, guid: 185d3ed871db89f458b61424a2d5c529,
+        type: 2}
+      propertyPath: wepTypes.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4819691474768178, guid: 185d3ed871db89f458b61424a2d5c529, type: 2}
       propertyPath: m_LocalPosition.x
       value: -1.4
@@ -969,6 +1019,41 @@ Prefab:
       propertyPath: m_Name
       value: room (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 114426667237072042, guid: 185d3ed871db89f458b61424a2d5c529,
+        type: 2}
+      propertyPath: roomName
+      value: Doctor's House
+      objectReference: {fileID: 0}
+    - target: {fileID: 114426667237072042, guid: 185d3ed871db89f458b61424a2d5c529,
+        type: 2}
+      propertyPath: wepNames.Array.data[0]
+      value: Morphine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114426667237072042, guid: 185d3ed871db89f458b61424a2d5c529,
+        type: 2}
+      propertyPath: wepNames.Array.data[1]
+      value: Opium
+      objectReference: {fileID: 0}
+    - target: {fileID: 114426667237072042, guid: 185d3ed871db89f458b61424a2d5c529,
+        type: 2}
+      propertyPath: wepNames.Array.data[2]
+      value: Bone Saw
+      objectReference: {fileID: 0}
+    - target: {fileID: 114426667237072042, guid: 185d3ed871db89f458b61424a2d5c529,
+        type: 2}
+      propertyPath: wepTypes.Array.data[0]
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114426667237072042, guid: 185d3ed871db89f458b61424a2d5c529,
+        type: 2}
+      propertyPath: wepTypes.Array.data[1]
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114426667237072042, guid: 185d3ed871db89f458b61424a2d5c529,
+        type: 2}
+      propertyPath: wepTypes.Array.data[2]
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 185d3ed871db89f458b61424a2d5c529, type: 2}
   m_IsPrefabParent: 0
@@ -979,6 +1064,16 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114426667237072042, guid: 185d3ed871db89f458b61424a2d5c529,
+        type: 2}
+      propertyPath: wepNames.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114426667237072042, guid: 185d3ed871db89f458b61424a2d5c529,
+        type: 2}
+      propertyPath: wepTypes.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4819691474768178, guid: 185d3ed871db89f458b61424a2d5c529, type: 2}
       propertyPath: m_LocalPosition.x
       value: 1.4
@@ -1014,6 +1109,36 @@ Prefab:
     - target: {fileID: 1339038604418626, guid: 185d3ed871db89f458b61424a2d5c529, type: 2}
       propertyPath: m_Name
       value: room (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114426667237072042, guid: 185d3ed871db89f458b61424a2d5c529,
+        type: 2}
+      propertyPath: roomName
+      value: Fisherman's Cabin
+      objectReference: {fileID: 0}
+    - target: {fileID: 114426667237072042, guid: 185d3ed871db89f458b61424a2d5c529,
+        type: 2}
+      propertyPath: wepNames.Array.data[0]
+      value: Fishing Line
+      objectReference: {fileID: 0}
+    - target: {fileID: 114426667237072042, guid: 185d3ed871db89f458b61424a2d5c529,
+        type: 2}
+      propertyPath: wepTypes.Array.data[0]
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114426667237072042, guid: 185d3ed871db89f458b61424a2d5c529,
+        type: 2}
+      propertyPath: wepNames.Array.data[1]
+      value: Giant Fish
+      objectReference: {fileID: 0}
+    - target: {fileID: 114426667237072042, guid: 185d3ed871db89f458b61424a2d5c529,
+        type: 2}
+      propertyPath: wepNames.Array.data[2]
+      value: Whaling Spear
+      objectReference: {fileID: 0}
+    - target: {fileID: 114426667237072042, guid: 185d3ed871db89f458b61424a2d5c529,
+        type: 2}
+      propertyPath: wepTypes.Array.data[2]
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 185d3ed871db89f458b61424a2d5c529, type: 2}
