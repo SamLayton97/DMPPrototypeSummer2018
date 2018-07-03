@@ -33,6 +33,12 @@ public class Room : MonoBehaviour
     List<Weapon> currWepList = new List<Weapon>();       // current list of weapons stored in room
                                                          // Note: Killers remove weapons from latter list. Former is for comparisons.
 
+    // Room interaction fields
+    public float distance = 1f;
+    GameObject box;
+    bool drawInteractionOption = false;
+    bool drawMenu = false;
+
     // room identification fields
     [SerializeField]
     string roomName;
@@ -276,5 +282,65 @@ public class Room : MonoBehaviour
         }
     }
 
+    // Update updates based on local framerate, called once per frame
+    void Update()
+    {
+        // defines boxmax on layer 10 (i.e. player)
+        int boxMask = 1 << 10;
+
+        // Create and store hit raycast
+        Physics2D.queriesStartInColliders = false;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.left * transform.localScale.x * 1.5f, distance, boxMask);
+
+        // Interaction check
+        if (hit.collider != null)
+        {
+            drawInteractionOption = true;
+            box = hit.collider.gameObject;
+        }
+        else
+        {
+            drawInteractionOption = false;
+            drawMenu = false;
+        }
+
+        // checks if the collider and ray is being hit and if e is being pressed
+        if (hit.collider != null && Input.GetKey(KeyCode.E))
+        {
+            box = hit.collider.gameObject;
+            drawMenu = true;
+        }
+    }
+
+    // draw line in scene view to represent ray
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(transform.position, (Vector2)transform.position + Vector2.left * transform.localScale.x * distance * 1.5f);
+    }
+
+    // Draw GUI Method
+    void OnGUI()
+    {
+        // Press E Check
+        if (drawInteractionOption == true)
+        {
+            GUI.Label(new Rect(10, 10, Screen.width, Screen.height), "PRESS E TO INTERACT");
+        }
+        // Draw Menu
+        if (drawMenu == true)
+        {
+            // Room Names
+            GUI.Label(new Rect(10, 30, Screen.width, Screen.height), "Room: " + roomName);
+            // Weapons in Room
+            GUI.Label(new Rect(10, 60, Screen.width, Screen.height), "Weapons in Room:");
+            for (int i = 0; i < currWepList.Count; i++)
+            {
+                GUI.Label(new Rect(15, 75 + (i * 15), Screen.width, Screen.height), " - " + currWepList[i].WeaponName);
+            }
+
+        }
+
+    }
     #endregion
 }
