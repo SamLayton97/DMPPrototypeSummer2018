@@ -257,6 +257,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 13
       objectReference: {fileID: 0}
+    - target: {fileID: 212767095203756434, guid: ebe2c307f1146e84fa592435f06114de,
+        type: 2}
+      propertyPath: m_SortingLayerID
+      value: 114207139
+      objectReference: {fileID: 0}
+    - target: {fileID: 212767095203756434, guid: ebe2c307f1146e84fa592435f06114de,
+        type: 2}
+      propertyPath: m_SortingLayer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ebe2c307f1146e84fa592435f06114de, type: 2}
   m_IsPrefabParent: 0
@@ -640,6 +650,7 @@ GameObject:
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
   - component: {fileID: 519420033}
+  - component: {fileID: 519420034}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -671,10 +682,10 @@ MonoBehaviour:
   numOfCharacters: 16
   numOfKillers: 1
   numOfRooms: 4
-  prefabRoom1: {fileID: 0}
-  prefabRoom2: {fileID: 0}
-  prefabRoom3: {fileID: 0}
-  prefabRoom4: {fileID: 0}
+  prefabRoom1: {fileID: 548509007}
+  prefabRoom2: {fileID: 760829427}
+  prefabRoom3: {fileID: 2059225434}
+  prefabRoom4: {fileID: 1905066327}
   prefabRoom5: {fileID: 0}
   prefabRoom6: {fileID: 0}
 --- !u!20 &519420031
@@ -737,6 +748,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52bae4e849706534dad02ff927bf180f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &519420034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cf03b69074b6b148ab97f793bd74819, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numOfRooms: 4
+  prefabRoom1: {fileID: 548509007}
+  prefabRoom2: {fileID: 760829427}
+  prefabRoom3: {fileID: 2059225434}
+  prefabRoom4: {fileID: 1905066327}
+  prefabRoom5: {fileID: 0}
+  prefabRoom6: {fileID: 0}
+--- !u!1 &548509007 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1339038604418626, guid: 185d3ed871db89f458b61424a2d5c529,
+    type: 2}
+  m_PrefabInternal: {fileID: 1533282135}
 --- !u!1001 &554771149
 Prefab:
   m_ObjectHideFlags: 0
@@ -842,6 +876,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e2b799dbff36148448c94944a6ecbb4d, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &760829427 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1339038604418626, guid: 185d3ed871db89f458b61424a2d5c529,
+    type: 2}
+  m_PrefabInternal: {fileID: 466854245}
 --- !u!1001 &789546181
 Prefab:
   m_ObjectHideFlags: 0
@@ -1189,6 +1228,16 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 185d3ed871db89f458b61424a2d5c529, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1905066327 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1339038604418626, guid: 185d3ed871db89f458b61424a2d5c529,
+    type: 2}
+  m_PrefabInternal: {fileID: 789546181}
+--- !u!1 &2059225434 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1339038604418626, guid: 185d3ed871db89f458b61424a2d5c529,
+    type: 2}
+  m_PrefabInternal: {fileID: 2104658533}
 --- !u!1001 &2104658533
 Prefab:
   m_ObjectHideFlags: 0

@@ -94,6 +94,7 @@ public class Character : MonoBehaviour
         Vector2 corpseSpawnLoc = new Vector2(transform.position.x, transform.position.y);
         GameObject newCorpse = Instantiate(corpsePrefab, corpseSpawnLoc, Quaternion.identity);
         newCorpse.GetComponent<Corpse>().WeaponTypeUsed = weaponType;
+        newCorpse.GetComponent<Corpse>().VictimName = charName;
         currRoomScript.Populate(newCorpse);
 
         // destroy victim game object

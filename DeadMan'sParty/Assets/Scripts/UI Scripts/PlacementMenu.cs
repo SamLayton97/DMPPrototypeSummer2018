@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class PlacementMenu : MonoBehaviour
 {
     // movement support
-    GameManager gameManager;
+    RoomManager roomManager;
 
     // character data fields
     GameObject character;
@@ -52,7 +52,7 @@ public class PlacementMenu : MonoBehaviour
     {
         // retreive necessary objects from scene
         charNameText = GameObject.FindGameObjectWithTag("menuCharacterName").GetComponent<Text>();
-        gameManager = Camera.main.GetComponent<GameManager>();
+        roomManager = Camera.main.GetComponent<RoomManager>();
 
         Character = GameObject.FindGameObjectWithTag("CharacterMenu").GetComponent<CharacterMenu>().Character;
     }
@@ -80,7 +80,7 @@ public class PlacementMenu : MonoBehaviour
     {
         // send current character to lobby
         if (character != null)
-            gameManager.PushToRoom(character, 0);
+            roomManager.PushToRoom(character, 0);
         else
             Debug.Log("No character selected.");
     }
@@ -92,7 +92,7 @@ public class PlacementMenu : MonoBehaviour
     {
         // send character to room 1
         if (character != null)
-            gameManager.PushToRoom(character, 1);
+            roomManager.PushToRoom(character, 1);
         else
             Debug.Log("No character selected.");
     }
@@ -104,7 +104,7 @@ public class PlacementMenu : MonoBehaviour
     {
         // send character to room 2
         if (character != null)
-            gameManager.PushToRoom(character, 2);
+            roomManager.PushToRoom(character, 2);
         else
             Debug.Log("No character selected.");
     }
@@ -116,7 +116,7 @@ public class PlacementMenu : MonoBehaviour
     {
         // send character to room 3
         if (character != null)
-            gameManager.PushToRoom(character, 3);
+            roomManager.PushToRoom(character, 3);
         else
             Debug.Log("No character selected.");
     }
@@ -128,7 +128,7 @@ public class PlacementMenu : MonoBehaviour
     {
         // send character to room 4
         if (character != null)
-            gameManager.PushToRoom(character, 4);
+            roomManager.PushToRoom(character, 4);
         else
             Debug.Log("No character selected.");
     }
@@ -140,7 +140,7 @@ public class PlacementMenu : MonoBehaviour
     {
         // send character to execution room
         if (character != null)
-            gameManager.PushToRoom(character, -1);
+            roomManager.PushToRoom(character, -1);
         else
             Debug.Log("No character selected.");
     }
