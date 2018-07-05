@@ -58,31 +58,30 @@ public class CharacterUI : MonoBehaviour
     /// </summary>
     void OnMouseDown()
     {
-        //// find character placement menu in scene
-        //// and set menu to refer to this character game object
-        //GameObject placementMenu = GameObject.FindGameObjectWithTag("PlacementMenu");
-        //placementMenu.GetComponent<PlacementMenu>().Character = gameObject;
-        GameObject characterMenu;
+        // find existing character and placement menus in scene
+        GameObject[] existingCharMenus = GameObject.FindGameObjectsWithTag("CharacterMenu");
+        GameObject[] existingPlacMenus = GameObject.FindGameObjectsWithTag("PlacementMenu");
 
-        // create the character menu
-        if (GameObject.FindGameObjectsWithTag("CharacterMenu").Length == 0)
+        // add existing menus to list
+        List<GameObject> existingMenus = new List<GameObject>();
+        for (int i = 0; i < existingCharMenus.Length; i++)
         {
-            characterMenu = Instantiate(prefabCharacterMenu, new Vector3(-350, 0, 0), Quaternion.identity);
-
-            // find the character menu in scene
-            // and set the menu to refer to this character
-            characterMenu.GetComponent<CharacterMenu>().Character = gameObject;
+            existingMenus.Add(existingCharMenus[i]);
         }
-        else
+        for (int i = 0; i < existingPlacMenus.Length; i++)
         {
-            characterMenu = GameObject.FindGameObjectWithTag("CharacterMenu");
-            Destroy(characterMenu);
-            Instantiate(prefabCharacterMenu, new Vector3(-350, 0, 0), Quaternion.identity);
-
-            // find the character menu in scene
-            // and set the menu to refer to this character
-            characterMenu = GameObject.FindGameObjectWithTag("CharacterMenu");
-            characterMenu.GetComponent<CharacterMenu>().Character = gameObject;
+            existingMenus.Add(existingPlacMenus[i]);
         }
+
+        // close any remaining menus
+        foreach (GameObject openMenu in existingMenus)
+        {
+            Destroy(openMenu);
+        }
+
+        // create a new character menu referencing this game object
+        GameObject newCharMenu = Instantiate((GameObject)Resources.Load("CharacterMenu"),
+            new Vector3(0, 0, 0), Quaternion.identity);
+        newCharMenu.GetComponent<CharacterMenu>().Character = gameObject;
     }
 }

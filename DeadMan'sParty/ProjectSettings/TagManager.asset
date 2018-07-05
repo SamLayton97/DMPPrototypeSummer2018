@@ -19,6 +19,8 @@ TagManager:
   - ActionButton
   - Weapon
   - corpse
+  - CharacterMenuNameText
+  - CharacterMenuAliveStatusText
   layers:
   - Default
   - TransparentFX
