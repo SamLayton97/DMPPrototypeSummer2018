@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212717110955774358}
   - component: {fileID: 114457755391620880}
   - component: {fileID: 58804394093249606}
-  - component: {fileID: 114564581534169818}
+  - component: {fileID: 114905372482808136}
   m_Layer: 8
   m_Name: character
   m_TagString: character
@@ -73,7 +73,7 @@ MonoBehaviour:
   murdererSprite: {fileID: 21300000, guid: 140615fb58700a94a885a379d17e7284, type: 3}
   corpsePrefab: {fileID: 1668647402672540, guid: f5aeff2dee7c9984a862c34f253612c6,
     type: 2}
---- !u!114 &114564581534169818
+--- !u!114 &114905372482808136
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -84,8 +84,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37c922af43cfe6245b0cc2c6cfeba20d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabCharacterMenu: {fileID: 1585316145212754, guid: e2b799dbff36148448c94944a6ecbb4d,
-    type: 2}
 --- !u!212 &212717110955774358
 SpriteRenderer:
   m_ObjectHideFlags: 1

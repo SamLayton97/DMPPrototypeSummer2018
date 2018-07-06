@@ -8,10 +8,6 @@ using UnityEngine.UI;
 /// </summary>
 public class CharacterUI : MonoBehaviour
 {
-    // character menu assets
-    [SerializeField]
-    GameObject prefabCharacterMenu;
-
     // name display support fields
     CharacterList characterName;
     Text nameText;
