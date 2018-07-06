@@ -43,6 +43,14 @@ public class RoomManager : MonoBehaviour
     #region Properties
 
     /// <summary>
+    /// Returns number of standard rooms in scene
+    /// </summary>
+    public int NumOfRooms
+    {
+        get { return rooms.Count; }
+    }
+
+    /// <summary>
     /// Returns a reference to the execution room's ExecutionRoom script
     /// </summary>
     public ExecutionRoom ExecutionRoom
@@ -271,11 +279,6 @@ public class RoomManager : MonoBehaviour
             }
         }
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
     #endregion
 

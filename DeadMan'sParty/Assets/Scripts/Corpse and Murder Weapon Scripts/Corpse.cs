@@ -97,4 +97,16 @@ public class Corpse : MonoBehaviour
             return causesOfDeath[randCOD];
         }
     }
+
+    /// <summary>
+    /// Disposes of corpse
+    /// </summary>
+    public void Dispose()
+    {
+        // removes self from current room
+        currentRoom.GetComponent<Room>().Remove(gameObject);
+
+        // destroy self
+        Destroy(gameObject);
+    }
 }

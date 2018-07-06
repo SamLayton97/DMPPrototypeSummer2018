@@ -21,6 +21,7 @@ TagManager:
   - corpse
   - CharacterMenuNameText
   - CharacterMenuAliveStatusText
+  - PlacementMenuNameText
   layers:
   - Default
   - TransparentFX

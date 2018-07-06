@@ -64,7 +64,9 @@ public class CharacterMenu : MonoBehaviour
     /// </summary>
     void Update()
     {
-        UpdateText();
+        // update text if menu refers to character
+        if (character != null)
+            UpdateText();
     }
 
     /// <summary>
@@ -113,7 +115,12 @@ public class CharacterMenu : MonoBehaviour
     {
         if (character != null)
         {
+            // create placement menu refering to character-reference
+            GameObject newPlacMenu = Instantiate((GameObject)Resources.Load("PlacementMenu"));
+            newPlacMenu.GetComponent<PlacementMenu>().Character = character;
 
+            // Destroy open character menu
+            Destroy(gameObject);
         }
         else
             Debug.Log("Error: No character selected.");
@@ -128,10 +135,34 @@ public class CharacterMenu : MonoBehaviour
         if (character != null)
         {
             Debug.Log("Player performs an interrogation on " + charNameText.text +
-            " Full functionality yet to be implemented.");
+            ". Full functionality yet to be implemented.");
         }
         else
             Debug.Log("Error: No character selected.");
+    }
+
+    /// <summary>
+    /// Called when player clicks "Dispose" button
+    /// Destroys corpse and removes them from their current room
+    /// Note: Functionality unique to the Corpse variant of this menu
+    /// </summary>
+    public void OnClickDisposeButton()
+    {
+        // disposes of corpse-character and destroys menu
+        Corpse victim = character.GetComponent<Corpse>();
+        victim.Dispose();
+        Destroy(gameObject);
+    }
+
+    /// <summary>
+    /// Called when player clicks "Autopsy" button
+    /// Placeholder: Displays feedback to Debug log
+    /// Note: Functionality unique to the Corpse variant of this menu
+    /// </summary>
+    public void OnClickAutopsyButton()
+    {
+        Debug.Log("Player performs an autopsy on" + charNameText.text +
+            ". Full functionality yet to be implemented.");
     }
 
     /// <summary>

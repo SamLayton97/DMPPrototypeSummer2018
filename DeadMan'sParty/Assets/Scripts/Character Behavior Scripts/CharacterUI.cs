@@ -80,8 +80,16 @@ public class CharacterUI : MonoBehaviour
         }
 
         // create a new character menu referencing this game object
-        GameObject newCharMenu = Instantiate((GameObject)Resources.Load("CharacterMenu"),
-            new Vector3(0, 0, 0), Quaternion.identity);
-        newCharMenu.GetComponent<CharacterMenu>().Character = gameObject;
+        // Note: creates corpse variant if character is tagged as such
+        if (gameObject.CompareTag("character") || gameObject.CompareTag("murderer"))
+        {
+            GameObject newCharMenu = Instantiate((GameObject)Resources.Load("CharacterMenu"));
+            newCharMenu.GetComponent<CharacterMenu>().Character = gameObject;
+        }
+        else if (gameObject.CompareTag("corpse"))
+        {
+            GameObject newCharMenu = Instantiate((GameObject)Resources.Load("CorpseMenu"));
+            newCharMenu.GetComponent<CharacterMenu>().Character = gameObject;
+        }
     }
 }
