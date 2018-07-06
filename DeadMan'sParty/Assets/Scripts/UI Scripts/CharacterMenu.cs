@@ -161,7 +161,7 @@ public class CharacterMenu : MonoBehaviour
     /// </summary>
     public void OnClickAutopsyButton()
     {
-        Debug.Log("Player performs an autopsy on" + charNameText.text +
+        Debug.Log("Player performs an autopsy on " + charNameText.text +
             ". Full functionality yet to be implemented.");
     }
 
