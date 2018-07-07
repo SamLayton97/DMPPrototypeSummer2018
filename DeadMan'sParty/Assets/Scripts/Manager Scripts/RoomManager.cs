@@ -15,7 +15,7 @@ public class RoomManager : MonoBehaviour
     // room initialization fields
     List<GameObject> rooms = new List<GameObject>();    // a list storing each room in game
     [SerializeField]
-    int numOfRooms = 4;                                 // total room count
+    int numOfRooms;                                     // total room count
     int levelOccupancy = 0;                             // total number of characters able to fit into the scene
                                                         // (dependant on collective occupancy of each room in scene)
 
@@ -253,6 +253,7 @@ public class RoomManager : MonoBehaviour
 
             // calculate max occupancy of level
             levelOccupancy += room.GetComponent<Room>().MaxOccupancy;
+            Debug.Log(room.GetComponent<Room>().RoomName + ": " + room.GetComponent<Room>().RoomNumber);
         }
 
         // if number of characters exceeds occupancy of level, confine former to latter

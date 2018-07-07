@@ -16,6 +16,10 @@ public class CharacterMenu : MonoBehaviour
     Text charNameText;
     Text aliveStatusText;
 
+    // placement menu support fields
+    GameObject placementMenu;           // reference to proper placement menu to spawn
+    RoomManager roomManager;            // reference to room manager - used to find number of std rooms in scene
+
     #region Properties
 
     /// <summary>
@@ -57,6 +61,34 @@ public class CharacterMenu : MonoBehaviour
         // retrieve proper text components of menu
         charNameText = GameObject.FindGameObjectWithTag("CharacterMenuNameText").GetComponent<Text>();
         aliveStatusText = GameObject.FindGameObjectWithTag("CharacterMenuAliveStatusText").GetComponent<Text>();
+
+        // retrieve number of rooms within scene
+        roomManager = Camera.main.GetComponent<RoomManager>();
+        int numOfRooms = roomManager.NumOfRooms;
+
+        // retrieve reference to proper placement menu to spawn
+        switch (numOfRooms)
+        {
+            case 2:
+                placementMenu = (GameObject)Resources.Load("PlacementMenu2Room");
+                break;
+            case 3:
+                placementMenu = (GameObject)Resources.Load("PlacementMenu3Room");
+                break;
+            case 4:
+                placementMenu = (GameObject)Resources.Load("PlacementMenu4Room");
+                break;
+            case 5:
+                placementMenu = (GameObject)Resources.Load("PlacementMenu5Room");
+                break;
+            case 6:
+                placementMenu = (GameObject)Resources.Load("PlacementMenu6Room");
+                break;
+            default:
+                // print error message to Debug log
+                Debug.Log("Error: Unable to load placement menu. Invalid number of standard rooms in scene.");
+                break;
+        }
     }
 
     /// <summary>
@@ -116,7 +148,7 @@ public class CharacterMenu : MonoBehaviour
         if (character != null)
         {
             // create placement menu refering to character-reference
-            GameObject newPlacMenu = Instantiate((GameObject)Resources.Load("PlacementMenu"));
+            GameObject newPlacMenu = Instantiate(placementMenu);
             newPlacMenu.GetComponent<PlacementMenu>().Character = character;
 
             // Destroy open character menu

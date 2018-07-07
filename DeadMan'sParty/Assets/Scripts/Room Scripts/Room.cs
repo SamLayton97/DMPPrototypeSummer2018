@@ -52,6 +52,10 @@ public class Room : MonoBehaviour
     Sprite room3Sprite;
     [SerializeField]
     Sprite room4Sprite;
+    [SerializeField]
+    Sprite room5Sprite;
+    [SerializeField]
+    Sprite room6Sprite;
 
     #endregion
 
@@ -136,6 +140,15 @@ public class Room : MonoBehaviour
                         break;
                     case 4:
                         spriteRenderer.sprite = room4Sprite;
+                        break;
+                    case 5:
+                        spriteRenderer.sprite = room5Sprite;
+                        break;
+                    case 6:
+                        spriteRenderer.sprite = room6Sprite;
+                        break;
+                    default:
+                        spriteRenderer.sprite = room1Sprite;
                         break;
                 }
             }
