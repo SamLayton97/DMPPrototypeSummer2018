@@ -123,7 +123,7 @@ Prefab:
     - target: {fileID: 224476671026078714, guid: 868b597f4b0fa8c479bb213601d90e32,
         type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 224476671026078714, guid: 868b597f4b0fa8c479bb213601d90e32,
         type: 2}
@@ -163,7 +163,7 @@ Prefab:
     - target: {fileID: 224476671026078714, guid: 868b597f4b0fa8c479bb213601d90e32,
         type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 224476671026078714, guid: 868b597f4b0fa8c479bb213601d90e32,
         type: 2}
@@ -667,6 +667,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3cac02aa6e1def449eed783f0e732c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  totalAP: 7
   daysRemaining: 7
   characterPrefab: {fileID: 1899721702212578, guid: ced22b965e8befb4690d07cfbb2cc7ec,
     type: 2}
@@ -839,7 +840,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4532257570082500, guid: 18605ca56bce01c4c8c683043eafbf51, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 18605ca56bce01c4c8c683043eafbf51, type: 2}

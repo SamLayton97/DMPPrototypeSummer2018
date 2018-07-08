@@ -51,6 +51,11 @@ public class ActionPoints : MonoBehaviour
         }
     }
 
+    public void UseActionPoints()
+    {
+        --currentAP;
+    }
+
     /// <summary>
     /// Public Method for Investigation
     /// </summary>

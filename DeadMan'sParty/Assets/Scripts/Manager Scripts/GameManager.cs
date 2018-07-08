@@ -18,6 +18,11 @@ public class GameManager : MonoBehaviour
     Text notifPopUp;
     Button continueButton;
 
+    // stored for Action Points
+    [SerializeField]
+    float totalAP = 7;            // total amount of AP
+    float currentAP;              // current amount of AP
+
     // win / lose condition fields
     [SerializeField]
     int daysRemaining = 7;                  // counter tracking number of days remaining in game
@@ -47,6 +52,23 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region Properties
+
+    /// <summary>
+    /// Provides read/write access to the current number of AP left
+    /// </summary>
+    public float CurrentAP
+    {
+        get { return currentAP; }
+        set { currentAP = value; }
+    }
+
+    /// <summary>
+    /// Provides access to total amount of AP
+    /// </summary>
+    public float TotalAP
+    {
+        get { return totalAP; }
+    }
 
     /// <summary>
     /// Provides get / set access to number of characters in game
@@ -103,6 +125,15 @@ public class GameManager : MonoBehaviour
     public GameObject ReturnSuspect (CharacterList suspectName)
     {
         return suspects[suspectName];
+    }
+
+    /// <summary>
+    /// Useable method to subract AP from CurrentAP
+    /// </summary>
+    public void UseActionPoints()
+    {
+        --currentAP;
+        Debug.Log(currentAP);
     }
 
     /// <summary>
@@ -238,6 +269,9 @@ public class GameManager : MonoBehaviour
     // Called before the Start() method
     void Awake ()
     {
+        // sets current AP to total AP
+        currentAP = totalAP;
+
         // retrieves a reference to the Room Manager
         roomManager = Camera.main.GetComponent<RoomManager>();
 

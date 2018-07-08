@@ -8,6 +8,9 @@ using UnityEngine.UI;
 /// </summary>
 public class PlacementMenu : MonoBehaviour
 {
+    // GameManager support
+    GameManager gameManager;
+
     // movement support
     RoomManager roomManager;
 
@@ -59,6 +62,7 @@ public class PlacementMenu : MonoBehaviour
         // retreive necessary objects from scene
         charNameText = GameObject.FindGameObjectWithTag("PlacementMenuNameText").GetComponent<Text>();
         roomManager = Camera.main.GetComponent<RoomManager>();
+        gameManager = Camera.main.GetComponent<GameManager>();
     }
 
     /// <summary>
@@ -188,11 +192,16 @@ public class PlacementMenu : MonoBehaviour
     /// </summary>
     public void OnClickExecuteButton()
     {
-        // send character to execution room
-        if (character != null)
+        // send character to execution room if you have AP
+        if (character != null && gameManager.CurrentAP > 0)
+        {
             roomManager.PushToRoom(character, -1);
+
+            // uses AP via GameManager UseAP Method
+            gameManager.UseActionPoints();
+        }
         else
-            Debug.Log("No character selected.");
+            Debug.Log("No character selected or not enough AP");
     }
 
     #endregion

@@ -9,6 +9,9 @@ using UnityEngine.UI;
 /// </summary>
 public class CharacterMenu : MonoBehaviour
 {
+    // gets GameManager Script
+    GameManager gameManager;
+
     // character data fields
     GameObject character;       // character game object which menu refers to
 
@@ -58,6 +61,10 @@ public class CharacterMenu : MonoBehaviour
     /// </summary>
     void Awake()
     {
+        // gets GameManager component
+        gameManager = Camera.main.GetComponent<GameManager>();
+
+
         // retrieve proper text components of menu
         charNameText = GameObject.FindGameObjectWithTag("CharacterMenuNameText").GetComponent<Text>();
         aliveStatusText = GameObject.FindGameObjectWithTag("CharacterMenuAliveStatusText").GetComponent<Text>();
@@ -164,13 +171,16 @@ public class CharacterMenu : MonoBehaviour
     /// </summary>
     public void OnClickInterrogateButton()
     {
-        if (character != null)
+        if (character != null && gameManager.CurrentAP > 0)
         {
             Debug.Log("Player performs an interrogation on " + charNameText.text +
             ". Full functionality yet to be implemented.");
+
+            // uses AP via GameManager UseAP Method
+            gameManager.UseActionPoints();
         }
         else
-            Debug.Log("Error: No character selected.");
+            Debug.Log("Error: No character selected or not enough AP");
     }
 
     /// <summary>
@@ -193,8 +203,17 @@ public class CharacterMenu : MonoBehaviour
     /// </summary>
     public void OnClickAutopsyButton()
     {
-        Debug.Log("Player performs an autopsy on " + charNameText.text +
+        if (gameManager.CurrentAP > 0)
+        {
+            Debug.Log("Player performs an autopsy on " + charNameText.text +
             ". Full functionality yet to be implemented.");
+            // uses AP via GameManager UseAP Method
+            gameManager.UseActionPoints();
+        }
+        else
+        {
+            Debug.Log("Not enough AP");
+        }
     }
 
     /// <summary>
