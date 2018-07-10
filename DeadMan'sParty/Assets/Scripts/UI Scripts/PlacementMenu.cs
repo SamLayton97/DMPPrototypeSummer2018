@@ -66,6 +66,20 @@ public class PlacementMenu : MonoBehaviour
     }
 
     /// <summary>
+    /// Used for initialization
+    /// </summary>
+    void Start()
+    {
+        // iterate through number of rooms / "send to room" buttons
+        for (int i = 1; i <= roomManager.NumOfRooms; i++)
+        {
+            // set button text to match corresponding room
+            Text strButtonText = GameObject.FindGameObjectWithTag("PlacementMenuSTR" + i + "Text").GetComponent<Text>();
+            strButtonText.text = roomManager.ReturnNameOfRoom(i - 1);
+        }
+    }
+
+    /// <summary>
     /// Updates text to match reference character
     /// </summary>
     void UpdateText()

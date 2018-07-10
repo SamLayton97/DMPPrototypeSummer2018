@@ -23,6 +23,12 @@ TagManager:
   - CharacterMenuAliveStatusText
   - PlacementMenuNameText
   - RoomNameText
+  - PlacementMenuSTR1Text
+  - PlacementMenuSTR2Text
+  - PlacementMenuSTR3Text
+  - PlacementMenuSTR4Text
+  - PlacementMenuSTR5Text
+  - PlacementMenuSTR6Text
   layers:
   - Default
   - TransparentFX
