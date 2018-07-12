@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// A room to hold characters for the night
@@ -43,6 +44,10 @@ public class Room : MonoBehaviour
     [SerializeField]
     string roomName;
     int roomNumber = 0;
+    Text roomNameText;
+
+    // room sprites
+    // Note: Used for an older version that identified rooms by number
     SpriteRenderer spriteRenderer;
     [SerializeField]
     Sprite room1Sprite;
@@ -292,6 +297,14 @@ public class Room : MonoBehaviour
         foreach (Weapon weapon in initWepList)
         {
             currWepList.Add(weapon);
+        }
+
+        // Sets text below room to display its name
+        // Note: action performed only for standard rooms
+        if (CompareTag("room") && roomName != null)
+        {
+            roomNameText = GetComponentInChildren<Text>();
+            roomNameText.text = roomName;
         }
     }
 

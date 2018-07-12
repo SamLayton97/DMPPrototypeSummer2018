@@ -123,7 +123,7 @@ Prefab:
     - target: {fileID: 224476671026078714, guid: 868b597f4b0fa8c479bb213601d90e32,
         type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 224476671026078714, guid: 868b597f4b0fa8c479bb213601d90e32,
         type: 2}
@@ -163,7 +163,7 @@ Prefab:
     - target: {fileID: 224476671026078714, guid: 868b597f4b0fa8c479bb213601d90e32,
         type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 224476671026078714, guid: 868b597f4b0fa8c479bb213601d90e32,
         type: 2}
@@ -463,6 +463,21 @@ Prefab:
       propertyPath: wepTypes.Array.data[2]
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 224438202112422744, guid: 185d3ed871db89f458b61424a2d5c529,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 224438202112422744, guid: 185d3ed871db89f458b61424a2d5c529,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 1.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 224438202112422744, guid: 185d3ed871db89f458b61424a2d5c529,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -1.4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 185d3ed871db89f458b61424a2d5c529, type: 2}
   m_IsPrefabParent: 0
@@ -538,12 +553,12 @@ Prefab:
     - target: {fileID: 114426667237072042, guid: 185d3ed871db89f458b61424a2d5c529,
         type: 2}
       propertyPath: wepNames.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 114426667237072042, guid: 185d3ed871db89f458b61424a2d5c529,
         type: 2}
       propertyPath: wepTypes.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4819691474768178, guid: 185d3ed871db89f458b61424a2d5c529, type: 2}
       propertyPath: m_LocalPosition.x
@@ -584,17 +599,17 @@ Prefab:
     - target: {fileID: 114426667237072042, guid: 185d3ed871db89f458b61424a2d5c529,
         type: 2}
       propertyPath: roomName
-      value: Room2
+      value: Armory
       objectReference: {fileID: 0}
     - target: {fileID: 114426667237072042, guid: 185d3ed871db89f458b61424a2d5c529,
         type: 2}
       propertyPath: wepNames.Array.data[0]
-      value: Knife
+      value: Mace
       objectReference: {fileID: 0}
     - target: {fileID: 114426667237072042, guid: 185d3ed871db89f458b61424a2d5c529,
         type: 2}
       propertyPath: wepTypes.Array.data[0]
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114426667237072042, guid: 185d3ed871db89f458b61424a2d5c529,
         type: 2}
@@ -604,17 +619,17 @@ Prefab:
     - target: {fileID: 114426667237072042, guid: 185d3ed871db89f458b61424a2d5c529,
         type: 2}
       propertyPath: wepTypes.Array.data[1]
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114426667237072042, guid: 185d3ed871db89f458b61424a2d5c529,
         type: 2}
       propertyPath: wepNames.Array.data[2]
-      value: Neddle
+      value: Spear
       objectReference: {fileID: 0}
     - target: {fileID: 114426667237072042, guid: 185d3ed871db89f458b61424a2d5c529,
         type: 2}
       propertyPath: wepTypes.Array.data[2]
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114426667237072042, guid: 185d3ed871db89f458b61424a2d5c529,
         type: 2}
@@ -625,6 +640,16 @@ Prefab:
         type: 2}
       propertyPath: wepTypes.Array.data[3]
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 224438202112422744, guid: 185d3ed871db89f458b61424a2d5c529,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 224438202112422744, guid: 185d3ed871db89f458b61424a2d5c529,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -1.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 185d3ed871db89f458b61424a2d5c529, type: 2}
@@ -720,7 +745,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &519420033
 MonoBehaviour:
@@ -798,7 +823,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4877628814080618, guid: d077a1c99487852428c8a81264a2dcd6, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d077a1c99487852428c8a81264a2dcd6, type: 2}
@@ -855,12 +880,12 @@ Prefab:
     - target: {fileID: 114426667237072042, guid: 185d3ed871db89f458b61424a2d5c529,
         type: 2}
       propertyPath: wepNames.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 114426667237072042, guid: 185d3ed871db89f458b61424a2d5c529,
         type: 2}
       propertyPath: wepTypes.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4819691474768178, guid: 185d3ed871db89f458b61424a2d5c529, type: 2}
       propertyPath: m_LocalPosition.x
@@ -897,27 +922,52 @@ Prefab:
     - target: {fileID: 114426667237072042, guid: 185d3ed871db89f458b61424a2d5c529,
         type: 2}
       propertyPath: roomName
-      value: House1
+      value: Fishing Shack
       objectReference: {fileID: 0}
     - target: {fileID: 114426667237072042, guid: 185d3ed871db89f458b61424a2d5c529,
         type: 2}
       propertyPath: wepNames.Array.data[0]
-      value: Bat
+      value: Fishing Line
       objectReference: {fileID: 0}
     - target: {fileID: 114426667237072042, guid: 185d3ed871db89f458b61424a2d5c529,
         type: 2}
       propertyPath: wepNames.Array.data[1]
-      value: Pool Que
+      value: Net
       objectReference: {fileID: 0}
     - target: {fileID: 114426667237072042, guid: 185d3ed871db89f458b61424a2d5c529,
         type: 2}
       propertyPath: wepNames.Array.data[2]
-      value: Mace
+      value: Fishing Spear
       objectReference: {fileID: 0}
     - target: {fileID: 114426667237072042, guid: 185d3ed871db89f458b61424a2d5c529,
         type: 2}
       propertyPath: wepNames.Array.data[3]
       value: Axe
+      objectReference: {fileID: 0}
+    - target: {fileID: 224438202112422744, guid: 185d3ed871db89f458b61424a2d5c529,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224438202112422744, guid: 185d3ed871db89f458b61424a2d5c529,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 1.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114426667237072042, guid: 185d3ed871db89f458b61424a2d5c529,
+        type: 2}
+      propertyPath: wepTypes.Array.data[0]
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114426667237072042, guid: 185d3ed871db89f458b61424a2d5c529,
+        type: 2}
+      propertyPath: wepTypes.Array.data[1]
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114426667237072042, guid: 185d3ed871db89f458b61424a2d5c529,
+        type: 2}
+      propertyPath: wepTypes.Array.data[2]
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 185d3ed871db89f458b61424a2d5c529, type: 2}
@@ -1010,6 +1060,16 @@ Prefab:
       propertyPath: wepTypes.Array.data[2]
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 224438202112422744, guid: 185d3ed871db89f458b61424a2d5c529,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 1.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 224438202112422744, guid: 185d3ed871db89f458b61424a2d5c529,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 1.4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 185d3ed871db89f458b61424a2d5c529, type: 2}
   m_IsPrefabParent: 0
@@ -1023,7 +1083,7 @@ Prefab:
     - target: {fileID: 224850627871515972, guid: 3a311c86211199c41b20bb01a74e2505,
         type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 224850627871515972, guid: 3a311c86211199c41b20bb01a74e2505,
         type: 2}
@@ -1063,7 +1123,7 @@ Prefab:
     - target: {fileID: 224850627871515972, guid: 3a311c86211199c41b20bb01a74e2505,
         type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 224850627871515972, guid: 3a311c86211199c41b20bb01a74e2505,
         type: 2}

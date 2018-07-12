@@ -220,8 +220,19 @@ public class RoomManager : MonoBehaviour
             }
         }
 
-        // room-related conditions are satisfied, return true
+        // room-related conditions are satisfied, thus return true
         return true;
+    }
+
+    /// <summary>
+    /// Retrieves name of room from list of rooms
+    /// Used by the placement menu to properly set text to match room names
+    /// </summary>
+    /// <param name="roomNumber">index of room in list of rooms</param>
+    /// <returns>name of selected room</returns>
+    public string ReturnNameOfRoom (int roomNumber)
+    {
+        return rooms[roomNumber].GetComponent<Room>().RoomName;
     }
 
     #endregion
