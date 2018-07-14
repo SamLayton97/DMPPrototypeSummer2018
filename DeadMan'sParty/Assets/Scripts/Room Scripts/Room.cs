@@ -82,6 +82,10 @@ public class Room : MonoBehaviour
         get { return maxOccupancy; }
     }
 
+    public string GetRoomName
+    {
+        get { return roomName; }
+    }
     /// <summary>
     /// Returns whether room is at max capacity
     /// </summary>
