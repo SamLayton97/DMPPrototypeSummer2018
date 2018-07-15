@@ -78,12 +78,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10001ca906eefc14385a2259b917920b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxOccupancy: 4
+  occupants: []
   characterPrefab: {fileID: 1899721702212578, guid: ced22b965e8befb4690d07cfbb2cc7ec,
     type: 2}
+  wepNames: []
+  wepTypes: 
+  distance: 1
+  box: {fileID: 0}
+  menuUI: {fileID: 1004953528805910, guid: 7111a53a3109e5346b12117cf4377d28, type: 2}
+  roomName: 
   room1Sprite: {fileID: 0}
   room2Sprite: {fileID: 0}
   room3Sprite: {fileID: 0}
   room4Sprite: {fileID: 0}
+  room5Sprite: {fileID: 0}
+  room6Sprite: {fileID: 0}
 --- !u!212 &212037783330532568
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -36,9 +36,18 @@ public class Room : MonoBehaviour
 
     // Room interaction fields
     public float distance = 1f;
-    GameObject box;
+    public GameObject box;
     bool drawInteractionOption = false;
     bool drawMenu = false;
+    Text rmNameTextBox;
+    Text wpNameTextBox;
+    Text wpNameTextBox1;
+    Text wpNameTextBox2;
+    string weaponList;
+    string newWepList;
+
+    public GameObject menuUI;
+    public static bool MenuPopUp = false;
 
     // room identification fields
     [SerializeField]
@@ -325,8 +334,8 @@ public class Room : MonoBehaviour
         // Interaction check
         if (hit.collider != null)
         {
-            drawInteractionOption = true;
-            box = hit.collider.gameObject;
+                drawInteractionOption = true;
+                box = hit.collider.gameObject;
         }
         else
         {
@@ -337,8 +346,28 @@ public class Room : MonoBehaviour
         // checks if the collider and ray is being hit and if e is being pressed
         if (hit.collider != null && Input.GetKey(KeyCode.E))
         {
-            box = hit.collider.gameObject;
-            drawMenu = true;
+            MenuPopUp = true;
+            if (MenuPopUp)
+            {
+                PopUp();
+                box = hit.collider.gameObject;
+                drawMenu = true;
+                rmNameTextBox = GameObject.FindGameObjectWithTag("RoomNameText").GetComponent<Text>();
+                rmNameTextBox.text = "Location: " + roomName;
+
+                wpNameTextBox = GameObject.FindGameObjectWithTag("WeaponNameText").GetComponent<Text>();
+
+                for (int i = 0; i < currWepList.Count; i++)
+                {
+                    weaponList += currWepList[i].WeaponName + "\n";
+                    newWepList = weaponList;
+                }
+                wpNameTextBox.text = newWepList;
+            }
+            else
+            {
+                PopDown();
+            }
         }
     }
 
@@ -357,20 +386,31 @@ public class Room : MonoBehaviour
         {
             GUI.Label(new Rect(10, 10, Screen.width, Screen.height), "PRESS E TO INTERACT");
         }
-        // Draw Menu
+        //// Draw Menu
         if (drawMenu == true)
         {
-            // Room Names
-            GUI.Label(new Rect(10, 30, Screen.width, Screen.height), "Room: " + roomName);
-            // Weapons in Room
-            GUI.Label(new Rect(10, 60, Screen.width, Screen.height), "Weapons in Room:");
+            //    // Room Names
+            //    GUI.Label(new Rect(10, 30, Screen.width, Screen.height), "Room: " + roomName);
+            //    // Weapons in Room
+            //    GUI.Label(new Rect(10, 60, Screen.width, Screen.height), "Weapons in Room:");
             for (int i = 0; i < currWepList.Count; i++)
-            {
-                GUI.Label(new Rect(15, 75 + (i * 15), Screen.width, Screen.height), " - " + currWepList[i].WeaponName);
-            }
-
+        {
+            GUI.Label(new Rect(15, 75 + (i * 15), Screen.width, Screen.height), " - " + currWepList[i].WeaponName);
+        }
         }
 
+    }
+
+    void PopDown()
+    {
+        menuUI.SetActive(false);
+        MenuPopUp = false;
+    }
+
+    void PopUp()
+    {
+        menuUI.SetActive(true);
+        MenuPopUp = true;
     }
     #endregion
 }

@@ -29,6 +29,11 @@ TagManager:
   - PlacementMenuSTR4Text
   - PlacementMenuSTR5Text
   - PlacementMenuSTR6Text
+  - WeaponNameText
+  - WeaponNameText1
+  - WeaponNameText2
+  - WeaponNameText3
+  - WeaponListText
   layers:
   - Default
   - TransparentFX
