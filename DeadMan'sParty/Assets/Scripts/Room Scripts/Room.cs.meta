@@ -3,7 +3,16 @@ guid: 3cf2ccba17142c94cbc38feb4b34ef74
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - characterPrefab: {instanceID: 0}
+  - box: {instanceID: 0}
+  - menuUI: {fileID: 1004953528805910, guid: 7111a53a3109e5346b12117cf4377d28, type: 2}
+  - room1Sprite: {instanceID: 0}
+  - room2Sprite: {instanceID: 0}
+  - room3Sprite: {instanceID: 0}
+  - room4Sprite: {instanceID: 0}
+  - room5Sprite: {instanceID: 0}
+  - room6Sprite: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
