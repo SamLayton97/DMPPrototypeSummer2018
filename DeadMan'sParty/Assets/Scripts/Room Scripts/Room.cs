@@ -351,6 +351,8 @@ public class Room : MonoBehaviour
                 // Grabs the name of the room and places it in menu
                 rmNameTextBox = GameObject.FindGameObjectWithTag("RoomNameText").GetComponent<Text>();
                 rmNameTextBox.text = "Location: " + roomName;
+                // Reset string
+                weaponList = "";
                 // Grabs names of weapons in room
                 wpNameTextBox = GameObject.FindGameObjectWithTag("WeaponNameText").GetComponent<Text>();
                 for (int i = 0; i < currWepList.Count; i++)
