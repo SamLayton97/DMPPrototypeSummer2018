@@ -50,23 +50,9 @@ public class Room : MonoBehaviour
     [SerializeField]
     string roomName;
     int roomNumber = 0;
-    Text roomNameText;
 
-    // room sprites
-    // Note: Used for an older version that identified rooms by number
-    SpriteRenderer spriteRenderer;
-    [SerializeField]
-    Sprite room1Sprite;
-    [SerializeField]
-    Sprite room2Sprite;
-    [SerializeField]
-    Sprite room3Sprite;
-    [SerializeField]
-    Sprite room4Sprite;
-    [SerializeField]
-    Sprite room5Sprite;
-    [SerializeField]
-    Sprite room6Sprite;
+    // capacity display fields
+    Text capacityText;          // text displaying current and max number of characters in room
 
     #endregion
 
@@ -135,37 +121,10 @@ public class Room : MonoBehaviour
         get { return roomNumber; }
         set
         {
-            // if value is a valid room number (1-4)
+            // if value is a valid room number
             if (value < 5 && value > 0)
             {
                 roomNumber = value;
-
-                // changes room sprite accordingly
-                spriteRenderer = GetComponent<SpriteRenderer>();
-                switch (value)
-                {
-                    case 1:
-                        spriteRenderer.sprite = room1Sprite;
-                        break;
-                    case 2:
-                        spriteRenderer.sprite = room2Sprite;
-                        break;
-                    case 3:
-                        spriteRenderer.sprite = room3Sprite;
-                        break;
-                    case 4:
-                        spriteRenderer.sprite = room4Sprite;
-                        break;
-                    case 5:
-                        spriteRenderer.sprite = room5Sprite;
-                        break;
-                    case 6:
-                        spriteRenderer.sprite = room6Sprite;
-                        break;
-                    default:
-                        spriteRenderer.sprite = room1Sprite;
-                        break;
-                }
             }
         }
     }
@@ -207,7 +166,9 @@ public class Room : MonoBehaviour
         if (occupants.Count < maxOccupancy)
         {
             // add new occupant to list of occupants
+            // and update capacity text
             occupants.Add(newOccupant);
+            UpdateCapacityText();
 
             // set new occupant's current room to this
             // Note: this is dependant on the occupant's type
@@ -235,7 +196,9 @@ public class Room : MonoBehaviour
     public virtual void Remove(GameObject occupant)
     {
         // remove character from list of room's occupants
+        // and update capacity display text
         occupants.Remove(occupant);
+        UpdateCapacityText();
 
         // re-order remaining occupants to fill any positional gaps
         for (int i = 0; i < occupants.Count; i++)
@@ -288,11 +251,6 @@ public class Room : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-        // Destroy room's box collider
-        // Note: this is done so as not to interfere with characters' colliders in the
-        // OnMouseEnter() method
-        Destroy(GetComponent<BoxCollider2D>());
-
         // create set of weapons according to serialized fields
         for (int i = 0; i < wepNames.Length; i++)
         {
@@ -309,12 +267,11 @@ public class Room : MonoBehaviour
             currWepList.Add(weapon);
         }
 
-        // Sets text below room to display its name
+        // Sets text below room to character capacity
         // Note: action performed only for standard rooms
-        if (CompareTag("room") && roomName != null)
+        if (CompareTag("room"))
         {
-            roomNameText = GetComponentInChildren<Text>();
-            roomNameText.text = roomName;
+            UpdateCapacityText();
         }
     }
 
@@ -368,6 +325,22 @@ public class Room : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Updates displayed capacity text below room object
+    /// </summary>
+    void UpdateCapacityText()
+    {
+        // if no reference to capacity text component
+        if (capacityText == null)
+        {
+            // find reference to capacity text
+            capacityText = GetComponentInChildren<Text>();
+        }
+
+        // update text according to current number of characters
+        capacityText.text = occupants.Count.ToString() + " / " + maxOccupancy.ToString();
+    }
+
     // draw line in scene view to represent ray
     void OnDrawGizmos()
     {
@@ -397,4 +370,5 @@ public class Room : MonoBehaviour
         MenuPopUp = true;
     }
     #endregion
+
 }
