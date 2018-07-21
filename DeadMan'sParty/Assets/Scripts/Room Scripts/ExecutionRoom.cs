@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// An room to house characters player suspects to be murderer
@@ -11,12 +12,44 @@ public class ExecutionRoom : Room
     bool occupied = false;
     GameObject charToBeExecuted;
 
+    // occupancy text
+    Text occupancyText;
+
     /// <summary>
     /// Provides get access to whether chamber is occupied
     /// </summary>
     public bool IsOccupied
     {
         get { return occupied; }
+    }
+
+    /// <summary>
+    /// Called before Start() method
+    /// </summary>
+    protected override void Awake()
+    {
+        // set occupancy text
+        UpdateOccupancyText();
+    }
+
+    /// <summary>
+    /// Updates occuoancy display text according to whether room
+    /// is occupied by suspected murderer
+    /// </summary>
+    void UpdateOccupancyText()
+    {
+        // if no reference to capacity text component
+        if (occupancyText == null)
+        {
+            // find reference to capacity text
+            occupancyText = GetComponentInChildren<Text>();
+        }
+
+        // update text according to whether room is occupied
+        if (occupied)
+            occupancyText.text = "1 / 1";
+        else
+            occupancyText.text = "0 / 1";
     }
 
     /// <summary>
@@ -35,6 +68,9 @@ public class ExecutionRoom : Room
 
             // place new occupant at center of the room
             newOccupant.transform.position = gameObject.transform.position;
+
+            // update occupancy text
+            UpdateOccupancyText();
         }
         // otherwise (i.e., occupied room)
         else
@@ -60,8 +96,13 @@ public class ExecutionRoom : Room
     /// <returns>occupant game object</returns>
     public GameObject ExecuteOccupant()
     {
+        // destroy character to be executed
         Destroy(charToBeExecuted);
         occupied = false;
+
+        // update occupancy text
+        UpdateOccupancyText();
+
         return charToBeExecuted;
     }
 }

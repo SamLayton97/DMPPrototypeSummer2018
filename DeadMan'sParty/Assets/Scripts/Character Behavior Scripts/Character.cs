@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 /// <summary>
 /// Script controlling basic character behaviors
+/// Note: Character is invisible bundle of data (game object)
+/// held within Room scripts.
 /// </summary>
 public class Character : MonoBehaviour
 {
@@ -110,13 +112,6 @@ public class Character : MonoBehaviour
     {
         charName = name;
         isMurderer = murdererStatus;
-
-        // changes character's sprite accordingly
-        // Note: Used only for debugging purposes
-        //if (isMurderer)
-        //    spriteRenderer.sprite = murdererSprite;
-        //else
-        //    spriteRenderer.sprite = characterSprite;
     }
 
     #endregion

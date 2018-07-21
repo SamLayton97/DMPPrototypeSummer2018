@@ -17,11 +17,13 @@ public class Room : MonoBehaviour
     int maxOccupancy = 4;                                            // max num of characters to fit in room
     public List<GameObject> occupants = new List<GameObject>();      // list of characters currently occupying room
 
-    // character space fields
+    // character placement fields
     [SerializeField]
     protected GameObject characterPrefab;                   // a prefab of the character game object
     protected float characterRadius;                        // radius of character's circle colliders
-    Vector2[] occupantLocs;                                 // an array of occupant locations
+    Vector2 occupantLoc = new Vector2();                    // position to place occupant game objects
+                                                            // Note: relocating physical character game objects used purely
+                                                            //  for debugging purposes (i.e., no effect on gameplay)
 
     // room-unique weapon creation fields
     // Note: for proper creation of weapons, these arrays must align in inspector
@@ -101,18 +103,6 @@ public class Room : MonoBehaviour
     }
 
     /// <summary>
-    /// Provides set access to character dimensions
-    /// </summary>
-    public float CharacterRadius
-    {
-        set
-        {
-            // sets field
-            characterRadius = value;
-        }
-    }
-
-    /// <summary>
     /// Provides get and set access to room number
     /// Changes room's sprite accordingly
     /// </summary>
@@ -177,9 +167,8 @@ public class Room : MonoBehaviour
             else
                 newOccupant.GetComponent<Corpse>().CurrentRoom = gameObject;
 
-            // move character to first free space in room
-            Vector2 firstFreeLoc = occupantLocs[occupants.Count - 1];
-            newOccupant.transform.position = firstFreeLoc;
+            // move character to location within room
+            newOccupant.transform.position = occupantLoc;
         }
         // otherwise (i.e., full room)
         else
@@ -199,12 +188,6 @@ public class Room : MonoBehaviour
         // and update capacity display text
         occupants.Remove(occupant);
         UpdateCapacityText();
-
-        // re-order remaining occupants to fill any positional gaps
-        for (int i = 0; i < occupants.Count; i++)
-        {
-            occupants[i].transform.position = occupantLocs[i];
-        }
     }
 
     #endregion
@@ -216,36 +199,8 @@ public class Room : MonoBehaviour
     /// </summary>
     protected virtual void Awake()
     {
-        // creates memory for occupant locations array that rounds up to nearest even number
-        if (maxOccupancy % 2 != 0)
-            occupantLocs = new Vector2[maxOccupancy + 1];
-        else
-            occupantLocs = new Vector2[maxOccupancy];
-
-        // create temp character to save its dimentions and then destroy it
-        GameObject tempChar = Instantiate(characterPrefab);
-        characterRadius = tempChar.GetComponent<CircleCollider2D>().radius;
-        Destroy(tempChar);
-
-        // calculate initial coordinates to place occupants
-        BoxCollider2D boxCollider2D = GetComponent<BoxCollider2D>();
-        float initialXLoc = transform.position.x - (characterRadius * ((float)maxOccupancy / 4f));
-        float initialYLoc = transform.position.y + characterRadius;
-
-        // calculate number of characters per row
-        int charsPerRow = (maxOccupancy / 2) + (maxOccupancy % 2);
-
-        // store occupant placement locations according to saved dimensions
-        // splits room into two rows
-        for (int i = 0; i < 2; i++)
-        {
-            // fills row
-            for (int j = 0; j < charsPerRow; j++)
-            {
-                occupantLocs[(charsPerRow * i) + j] = new Vector2(initialXLoc + (j * characterRadius * 2),
-                    initialYLoc - (i * characterRadius * 2));
-            }
-        }
+        // set occupant location to be room's position
+        occupantLoc = transform.position;
     }
 
     // Use this for initialization
